@@ -32,3 +32,6 @@ and
 
 ### 3.让git不跟踪文件的变化
 `git update-index --assume-unchanged <file>`
+
+### 4.git 命令参考
+<http://git-scm.com/docs>
