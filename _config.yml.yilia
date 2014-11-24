@@ -1,0 +1,54 @@
+# Header
+menu:
+  主页: /
+  所有文章: /archives
+  Android: /categories/Android/
+  Java: /categories/Java/
+
+# SubNav
+subnav:
+  github: "https://github.com/Reacoder"
+  weibo: "http://weibo.com/u/1918409225"
+  # rss: "/atom.xml"
+  # facebook: "#"
+  google: "https://plus.google.com/u/0/117706805140071058584/posts"
+  # twitter: "#"
+  # linkedin: "#"
+
+rss: /atom.xml
+
+# Content
+excerpt_link: more
+fancybox: true
+
+# Miscellaneous
+
+favicon: /favicon.png
+
+#你的头像
+avatar: "http://tp2.sinaimg.cn/1918409225/180/40039469631/1"
+#是否开启分享
+share: true
+#是否开启多说评论，填写你在多说申请的项目名称
+duoshuo: "reacoder"
+duoshuo_shortname: Reacoder #多说账号
+#是否开启云标签
+tagcloud: true
+
+#是否开启友情链接
+#不开启——
+friends: false
+#开启——
+# friends:
+#   奥巴马的博客: http://localhost:4000/
+#   卡卡的美丽传说: http://localhost:4000/
+#   本泽马的博客: http://localhost:4000/
+#   吉格斯的博客: http://localhost:4000/
+#   习大大大不同: http://localhost:4000/
+#   托蒂的博客: http://localhost:4000/
+
+#是否开启“关于我”。
+#不开启——
+#aboutme: false
+#开启——
+aboutme: 华中科技大学08级，Android程序员，目前在上海联接工作…
