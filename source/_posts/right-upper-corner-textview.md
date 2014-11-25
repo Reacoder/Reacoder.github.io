@@ -9,7 +9,7 @@ tags:
 
 ---
 
-![rightuptext pic](http://d.pcs.baidu.com/thumbnail/c75a444993a89f43fc58035402640681?fid=3440609375-250528-234267853765401&time=1416837600&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-lRKYokykN%2F9aUhi9WLnZPY5BeV4%3D&rt=sh&expires=2h&r=288789566&sharesign=unknown&size=c710_u500&quality=100)
+![rightuptext pic](http://img.my.csdn.net/uploads/201411/25/1416884514_7020.png)
 
 ### 1.`RightUpperCornerText` 代码
 ```java
