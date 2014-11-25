@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>listview item进入和删除动画 | Reacoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.先看一下最终效果
+
+2.从右边划入的动画
+
+定义xml动画
+
+1234567&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;translate xmlns:android='http://schemas.android.com/apk/res/android'    android:duration='@integer/animTime'">
+<meta property="og:type" content="article">
+<meta property="og:title" content="listview item进入和删除动画">
+<meta property="og:url" content="http://reacoder.github.io/2014/11/24/listview-animation/">
+<meta property="og:site_name" content="Reacoder">
+<meta property="og:description" content="1.先看一下最终效果
+
+2.从右边划入的动画
+
+定义xml动画
+
+1234567&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;translate xmlns:android='http://schemas.android.com/apk/res/android'    android:duration='@integer/animTime'">
+<meta property="og:image" content="https://raw.githubusercontent.com/Reacoder/AndroidDevelopNote/master/listview_animation.gif">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="listview item进入和删除动画">
+<meta name="twitter:description" content="1.先看一下最终效果
+
+2.从右边划入的动画
+
+定义xml动画
+
+1234567&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;translate xmlns:android='http://schemas.android.com/apk/res/android'    android:duration='@integer/animTime'">
+
+  
+    <link rel="alternative" href="/atom.xml" title="Reacoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://tp2.sinaimg.cn/1918409225/180/40039469631/1">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Reacoder</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/Android/">Android</a></li>
+				        
+							<li><a href="/categories/Java/">Java</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Reacoder" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/1918409225" title="weibo">weibo</a>
+					        
+								<a class="google" target="_blank" href="https://plus.google.com/u/0/117706805140071058584/posts" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/hexo/" style="font-size: 20.00px;">hexo</a><a href="/tags/listview/" style="font-size: 20.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 10.00px;">touchEvent</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					华中科技大学08级，Android程序员，目前在上海联接工作…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://tp2.sinaimg.cn/1918409225/180/40039469631/1">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Reacoder</a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/Android/">Android</a></li>
+		        
+					<li><a href="/categories/Java/">Java</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Reacoder" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1918409225" title="weibo">weibo</a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/u/0/117706805140071058584/posts" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-listview-animation" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/24/listview-animation/" class="article-date">
+  	<time datetime="2014-11-24T14:08:59.000Z" itemprop="datePublished">Nov 24 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/animation/">animation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/listview/">listview</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      listview item进入和删除动画
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-先看一下最终效果">1.先看一下最终效果</h3>
+<p><img src="https://raw.githubusercontent.com/Reacoder/AndroidDevelopNote/master/listview_animation.gif" alt="listview"></p>
+<h3 id="2-从右边划入的动画">2.从右边划入的动画</h3>
+<ul>
+<li>定义xml动画</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">translate</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attribute">android:duration</span>=<span class="value">"@integer/animTime"</span></div><div class="line">    <span class="attribute">android:fromXDelta</span>=<span class="value">"100%p"</span></div><div class="line">    <span class="attribute">android:toXDelta</span>=<span class="value">"0%p"</span> &gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="title">translate</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Adapter</code>里只需要写如下代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> View <span class="title">getChildView</span>(<span class="keyword">final</span> <span class="keyword">int</span> groupPosition, <span class="keyword">int</span> childPosition, </div><div class="line">     <span class="keyword">boolean</span> isLastChild, View convertView, ViewGroup parent) {</div><div class="line">    ....</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!junk.isAnimatedBefore()) {</div><div class="line">        junk.setAnimatedBefore(<span class="keyword">true</span>);</div><div class="line">        convertView.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.slide_left_in));</div><div class="line">    }<span class="keyword">else</span>{</div><div class="line">        convertView.clearAnimation();</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> convertView;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="3-从左边划出的动画">3.从左边划出的动画</h3>
+<ul>
+<li>定义xml动画</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">set</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attribute">android:fillEnabled</span>=<span class="value">"true"</span></div><div class="line">    <span class="attribute">android:fillAfter</span>=<span class="value">"true"</span></div><div class="line">    <span class="attribute">android:duration</span>=<span class="value">"@integer/animTime"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="title">translate</span></span></div><div class="line">        <span class="attribute">android:fromXDelta</span>=<span class="value">"0%p"</span></div><div class="line">        <span class="attribute">android:toXDelta</span>=<span class="value">"-100%p"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="title">translate</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">set</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Adapter</code>里不需要做什么，需要在外面操作<code>ListView</code>.</li>
+</ul>
+<h3 id="4-在外面操作ListView">4.在外面操作<code>ListView</code></h3>
+<ul>
+<li>开始动画</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startBoost</span>() {</div><div class="line">    mIsDeleting = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">boolean</span> hasAnimation = <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">long</span> offset = <span class="number">0</span>;</div><div class="line">    mAnimCount = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> groupPosition = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> childPosition = -<span class="number">1</span>;</div><div class="line">    Iterator&lt;ArrayList&lt;Junk&gt;&gt; listIterator = mChildren.iterator();</div><div class="line">    <span class="keyword">while</span> (listIterator.hasNext()) {</div><div class="line">        groupPosition++;</div><div class="line">        <span class="keyword">final</span> Iterator&lt;Junk&gt; junkIterator = listIterator.next().iterator();</div><div class="line">        <span class="keyword">while</span> (junkIterator.hasNext()) {</div><div class="line">            childPosition++;</div><div class="line">            Junk junk = junkIterator.next();</div><div class="line">            <span class="keyword">if</span> (junk.isChecked()) {</div><div class="line">                ...</div><div class="line">                junkIterator.remove();</div><div class="line">                <span class="keyword">final</span> View itemView = ListViewUtil.getChildItemView(<span class="keyword">this</span>,</div><div class="line">                                                 mListView, groupPosition, childPosition);</div><div class="line">                <span class="keyword">if</span> (itemView != <span class="keyword">null</span>) {</div><div class="line">                    hasAnimation = <span class="keyword">true</span>;</div><div class="line">                    ((Animation) itemView.getTag(R.id.anim)).setAnimationListener(mAnimationListener);</div><div class="line">                    ((Animation) itemView.getTag(R.id.anim)).setStartOffset(offset);</div><div class="line">                    offset += <span class="number">100</span>;</div><div class="line">                    itemView.startAnimation(((Animation) itemView.getTag(R.id.anim)));</div><div class="line">                }</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span> (!hasAnimation) {</div><div class="line">        deleteCompleted();</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<ul>
+<li><code>mAnimationListener</code>定义如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Animation.AnimationListener mAnimationListener = <span class="keyword">new</span> Animation.AnimationListener() {</div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationStart</span>(Animation animation) {</div><div class="line">        mAnimCount++;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationEnd</span>(Animation animation) {</div><div class="line">        mAnimCount--;</div><div class="line">        <span class="keyword">if</span> (mAnimCount == <span class="number">0</span>) {</div><div class="line">            deleteCompleted();</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationRepeat</span>(Animation animation) {</div><div class="line"></div><div class="line">    }</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<ul>
+<li>删除完成后需要调用<code>ListViewUtil.clearListViewAnim(this, mListView);</code>,否则原来动画的地方会显示空白。</li>
+<li>动画时要禁用<code>OnTouch</code>事件，因为我们做动画时并没有调用<code>mAdapter.notifyDataSetChanged()</code>，所以如果滚动，由于数据没有同步，肯定会挂掉。</li>
+</ul>
+<p><strong>禁用<code>OnTouch</code>事件的方法如下</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span>(MotionEvent ev) {</div><div class="line">    <span class="comment">// intercept touch event when deleting ,avoid listview get view.</span></div><div class="line">    <span class="keyword">if</span> (mIsDeleting) {</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.dispatchTouchEvent(ev);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="4-ListView的工具方法">4.<code>ListView</code>的工具方法</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> View <span class="title">getChildItemView</span>(Context context, FloatingGroupExpandableListView listView, <span class="keyword">int</span> groupPosition, <span class="keyword">int</span> childPosition) {</div><div class="line">    <span class="keyword">long</span> packedPosition = ExpandableListView.getPackedPositionForChild(groupPosition, childPosition);</div><div class="line">    <span class="keyword">int</span> flatPosition;</div><div class="line">    <span class="keyword">try</span> {</div><div class="line">        flatPosition = listView.getFlatListPosition(packedPosition);</div><div class="line">    } <span class="keyword">catch</span> (Exception e) {</div><div class="line">        e.printStackTrace();</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">int</span> firstPosition = listView.getFirstVisiblePosition();</div><div class="line">    <span class="keyword">int</span> wantedChild = flatPosition - firstPosition;</div><div class="line">    <span class="keyword">if</span> (wantedChild &lt; <span class="number">0</span> || wantedChild &gt;= listView.getChildCount()) {</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    View childItemView = listView.getChildAt(wantedChild);</div><div class="line">    childItemView.setTag(R.id.anim, AnimationUtils.loadAnimation(context, R.anim.slide_left_out));</div><div class="line">    <span class="keyword">return</span> childItemView;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> View <span class="title">getItemView</span>(Context context, ListView listView, <span class="keyword">int</span> position) {</div><div class="line">    <span class="keyword">int</span> firstPosition = listView.getFirstVisiblePosition() - listView.getHeaderViewsCount();</div><div class="line">    <span class="keyword">int</span> wantedChild = position - firstPosition;</div><div class="line">    <span class="keyword">if</span> (wantedChild &lt; <span class="number">0</span> || wantedChild &gt;= listView.getChildCount()) {</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    View wantedView = listView.getChildAt(wantedChild);</div><div class="line">    wantedView.setTag(R.id.anim, AnimationUtils.loadAnimation(context, R.anim.slide_left_out));</div><div class="line">    <span class="keyword">return</span> wantedView;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clearListViewAnim</span>(Context context, ListView listView) {</div><div class="line">    <span class="keyword">int</span> first = listView.getFirstVisiblePosition();</div><div class="line">    <span class="keyword">int</span> count = listView.getChildCount() + <span class="number">2</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = first; i &lt; first + count; i++) {</div><div class="line">        View itemView = getItemView(context, listView, i);</div><div class="line">        <span class="keyword">if</span> (itemView != <span class="keyword">null</span>) {</div><div class="line">            itemView.clearAnimation();</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/24/right-upper-corner-textview/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          textview带有右上角文字
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/24/listview-refresh-over/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何确保Listview刷新结束,然后再执行其他操作。</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="listview-animation" data-title="listview item进入和删除动画" data-url="http://reacoder.github.io/2014/11/24/listview-animation/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"reacoder"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 Reacoder
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
