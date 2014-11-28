@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>android 自定义View | Reacoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概览：
+
+View 的生命周期
+Traversals
+Measure
+Draw
+Custom Attributes
+监听事件很简单，不讲了
+状态保存
+参考链接
+
+1. View 的生命周期
+
+Attachment/detachment（一般不用care）
+Traversals（必须care）
+State save/restore（看你的需求了）
+
+Attachment的回调接口是onAttache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android 自定义View">
+<meta property="og:url" content="http://reacoder.github.io/2014/11/28/android-custom-view/">
+<meta property="og:site_name" content="Reacoder">
+<meta property="og:description" content="概览：
+
+View 的生命周期
+Traversals
+Measure
+Draw
+Custom Attributes
+监听事件很简单，不讲了
+状态保存
+参考链接
+
+1. View 的生命周期
+
+Attachment/detachment（一般不用care）
+Traversals（必须care）
+State save/restore（看你的需求了）
+
+Attachment的回调接口是onAttache">
+<meta property="og:image" content="http://img3.douban.com/view/photo/photo/public/p2213816665.jpg">
+<meta property="og:image" content="http://img3.douban.com/view/photo/photo/public/p2213816673.jpg">
+<meta property="og:image" content="http://img5.douban.com/view/photo/photo/public/p2213816669.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android 自定义View">
+<meta name="twitter:description" content="概览：
+
+View 的生命周期
+Traversals
+Measure
+Draw
+Custom Attributes
+监听事件很简单，不讲了
+状态保存
+参考链接
+
+1. View 的生命周期
+
+Attachment/detachment（一般不用care）
+Traversals（必须care）
+State save/restore（看你的需求了）
+
+Attachment的回调接口是onAttache">
+
+  
+    <link rel="alternative" href="/atom.xml" title="Reacoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://tp2.sinaimg.cn/1918409225/180/40039469631/1">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Reacoder</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/Android/">Android</a></li>
+				        
+							<li><a href="/categories/Java/">Java</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Reacoder" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/1918409225" title="weibo">weibo</a>
+					        
+								<a class="google" target="_blank" href="https://plus.google.com/u/0/117706805140071058584/posts" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 10.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					华中科技大学08级，Android程序员，目前在上海联接工作…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://tp2.sinaimg.cn/1918409225/180/40039469631/1">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Reacoder</a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/Android/">Android</a></li>
+		        
+					<li><a href="/categories/Java/">Java</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Reacoder" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1918409225" title="weibo">weibo</a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/u/0/117706805140071058584/posts" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-android-custom-view" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/28/android-custom-view/" class="article-date">
+  	<time datetime="2014-11-28T08:35:39.000Z" itemprop="datePublished">Nov 28 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/customView/">customView</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      android 自定义View
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概览：">概览：</h3>
+<ol>
+<li>View 的生命周期</li>
+<li>Traversals</li>
+<li>Measure</li>
+<li>Draw</li>
+<li>Custom Attributes</li>
+<li>监听事件很简单，不讲了</li>
+<li>状态保存</li>
+<li>参考链接</li>
+</ol>
+<h3 id="1-_View_的生命周期">1. View 的生命周期</h3>
+<ul>
+<li>Attachment/detachment（一般不用care）</li>
+<li>Traversals（必须care）</li>
+<li>State save/restore（看你的需求了）</li>
+</ul>
+<p>Attachment的回调接口是<code>onAttachedToWindow()</code>，在这里你可以做以下操作</p>
+<ul>
+<li>Call super.onAttachedToWindow()!</li>
+<li>Perform any relevant state resets</li>
+<li>Start listening for state changes</li>
+</ul>
+<p>detachment的回调接口是<code>onDetachedFromWindow()</code>，在这里你可以做以下操作</p>
+<ul>
+<li>Call super.onDetachedFromWindow()!</li>
+<li>Remove any posted Runnables</li>
+<li>Stop listening for data changes</li>
+<li>Clean up resources <ul>
+<li>Bitmaps</li>
+<li>Threads</li>
+</ul>
+</li>
+</ul>
+<p>看看官方的<code>SwipeRefreshLayout</code>的运用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttachedToWindow</span>() {</div><div class="line">    <span class="keyword">super</span>.onAttachedToWindow();</div><div class="line">    removeCallbacks(mCancel);</div><div class="line">    removeCallbacks(mReturnToStartPosition);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDetachedFromWindow</span>() {</div><div class="line">    <span class="keyword">super</span>.onDetachedFromWindow();</div><div class="line">    removeCallbacks(mReturnToStartPosition);</div><div class="line">    removeCallbacks(mCancel);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>打个简单地比喻就是，如果你的View和网络操作相关的话，最好在这里做取消操作。它这里的操作其实就是取消或重置动画。好了，这里就不多说了，一般用不到。下面说说遍历Traversals。</p>
+<h3 id="2-_Traversals">2. Traversals</h3>
+<p>Traversals 分四个阶段</p>
+<p><strong>Animate—&gt;Measure—&gt;Layout—&gt;Draw</strong></p>
+<p>我们现在关心的是Measure和Draw，分别对应<code>onMeasure()</code>,<code>onDraw()</code>,先看看View的默认实现吧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span>(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec) {</div><div class="line">    setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),</div><div class="line">            getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));</div><div class="line">} </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getDefaultSize</span>(<span class="keyword">int</span> size, <span class="keyword">int</span> measureSpec) {</div><div class="line">    <span class="keyword">int</span> result = size;</div><div class="line">    <span class="keyword">int</span> specMode = MeasureSpec.getMode(measureSpec);</div><div class="line">    <span class="keyword">int</span> specSize = MeasureSpec.getSize(measureSpec);</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> (specMode) {</div><div class="line">    <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</div><div class="line">        result = size;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> MeasureSpec.AT_MOST:</div><div class="line">    <span class="keyword">case</span> MeasureSpec.EXACTLY:</div><div class="line">        result = specSize;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}    </div><div class="line">    </div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span>(Canvas canvas) {</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>现在来看看具体的Measure</p>
+<h3 id="3-_Measure">3. Measure</h3>
+<p>如果你自定义的View没有特殊尺寸要求的话，也可以不重写<code>onMeasure()</code>。现在来说说比较难理解的MeasureSpec 模式，三张图搞定它</p>
+<p><img src="http://img3.douban.com/view/photo/photo/public/p2213816665.jpg" alt="MeasureSpec.EXACTLY"></p>
+<p><img src="http://img3.douban.com/view/photo/photo/public/p2213816673.jpg" alt="MeasureSpec.AT_MOST"></p>
+<p><img src="http://img5.douban.com/view/photo/photo/public/p2213816669.jpg" alt="MeasureSpec.UNSPECIFIED"></p>
+<p>在<code>onMeasure()</code>里由于没有回调，框架依赖你最后设置尺寸，所以你一定要调用<code>setMeasuredDimension()</code>,否则运行时会crash。</p>
+<p>看看大牛Dave Smith 给的一个模板吧：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span>(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec) {</div><div class="line">        <span class="comment">//Get the width measurement</span></div><div class="line">        <span class="keyword">int</span> widthSize = MeasureUtils.getMeasurement(widthMeasureSpec, getDesiredWidth());</div><div class="line"></div><div class="line">        <span class="comment">//Get the height measurement</span></div><div class="line">        <span class="keyword">int</span> heightSize = MeasureUtils.getMeasurement(heightMeasureSpec, getDesiredHeight());</div><div class="line"></div><div class="line">        <span class="comment">//MUST call this to store the measurements</span></div><div class="line">        setMeasuredDimension(widthSize, heightSize);</div><div class="line">    }</div><div class="line">    </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MeasureUtils</span> </span>{</div><div class="line"></div><div class="line">    <span class="javadoc">/**</span></div><div class="line">     * Utility to return a view's standard measurement. Uses the</div><div class="line">     * supplied size when constraints are given. Attempts to</div><div class="line">     * hold to the desired size unless it conflicts with provided</div><div class="line">     * constraints.</div><div class="line">     *</div><div class="line">     *<span class="javadoctag"> @param</span> measureSpec Constraints imposed by the parent</div><div class="line">     *<span class="javadoctag"> @param</span> contentSize Desired size for the view</div><div class="line">     *<span class="javadoctag"> @return</span> The size the view should be.</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMeasurement</span>(<span class="keyword">int</span> measureSpec, <span class="keyword">int</span> contentSize) {</div><div class="line">        <span class="keyword">int</span> specMode = View.MeasureSpec.getMode(measureSpec);</div><div class="line">        <span class="keyword">int</span> specSize = View.MeasureSpec.getSize(measureSpec);</div><div class="line">        <span class="keyword">int</span> resultSize = <span class="number">0</span>;</div><div class="line">        <span class="keyword">switch</span> (specMode) {</div><div class="line">            <span class="keyword">case</span> View.MeasureSpec.UNSPECIFIED:</div><div class="line">                <span class="comment">//Big as we want to be</span></div><div class="line">                resultSize = contentSize;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> View.MeasureSpec.AT_MOST:</div><div class="line">                <span class="comment">//Big as we want to be, up to the spec</span></div><div class="line">                resultSize = Math.min(contentSize, specSize);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> View.MeasureSpec.EXACTLY:</div><div class="line">                <span class="comment">//Must be the spec size</span></div><div class="line">                resultSize = specSize;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">return</span> resultSize;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="4-_Draw">4. Draw</h3>
+<p>这其实没有太多要说的，<code>onDraw()</code>回调已经给你了一个Canvas，你要做的就是画各种你需要的东西了。看看Canvas的官方定义吧：</p>
+<blockquote>
+<p>The Canvas class holds the “draw” calls. To draw something, you need 4 basic components: A Bitmap to hold the pixels, a Canvas to host the draw calls (writing into the bitmap), a drawing primitive (e.g. Rect, Path, text, Bitmap), and a paint (to describe the colors and styles for the drawing).</p>
+</blockquote>
+<p>这里的Canvas已经包含一个immutable 的Bitmap了。需要注意的是<code>onDraw()</code>调用的很频繁，实例化对象的操作应该都放到外面。随便看个例子吧：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDraw</span>(Canvas canvas) {</div><div class="line">    <span class="keyword">super</span>.onDraw(canvas);</div><div class="line">    Log.d(tag,<span class="string">"onDraw called"</span>);</div><div class="line">    <span class="keyword">int</span> w = <span class="keyword">this</span>.getWidth();</div><div class="line">    <span class="keyword">int</span> h = <span class="keyword">this</span>.getHeight();</div><div class="line">    <span class="keyword">int</span> t = <span class="keyword">this</span>.getTop();</div><div class="line">    <span class="keyword">int</span> l = <span class="keyword">this</span>.getLeft();</div><div class="line">    <span class="keyword">int</span> ox = w/<span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> oy = h/<span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> rad = Math.min(ox,oy)/<span class="number">2</span>;</div><div class="line">    canvas.drawCircle(ox, oy, rad, getBrush());</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>其实这里的获取宽高的操作应该放到<code>onSizeChanged()</code>里面，这个是在<code>onLayout()</code>里调用的，而且一般只遍历一次。</p>
+<h3 id="5-_Custom_Attributes">5. Custom Attributes</h3>
+<p>这个没什么要讲的，看例子就理解了。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Listing 1-18. Defining Custom Attributes in attrs.xml</div><div class="line"><span class="tag">&lt;<span class="title">resources</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">declare-styleable</span> <span class="attribute">name</span>=<span class="value">"CircleView"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">attr</span> <span class="attribute">name</span>=<span class="value">"strokeWidth"</span> <span class="attribute">format</span>=<span class="value">"integer"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">attr</span> <span class="attribute">name</span>=<span class="value">"strokeColor"</span> <span class="attribute">format</span>=<span class="value">"color|reference"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">declare-styleable</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>下面这段好好理解<br>Given the attrs.xml in Listing 1-18, Android generates the following IDs:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">R.attr.strokeWidth (<span class="keyword">int</span>)</div><div class="line">R.attr.srokeColor (<span class="keyword">int</span>)</div><div class="line">R.styleable.CircelView (an array of ints)</div><div class="line">R.styleable.CircleView_strokeWidth (offset into the array)</div><div class="line">R.styleable.CircelView_strokeColor (offset into the array)</div></pre></td></tr></table></figure>
+
+<p>在初始化时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="title">CircleView</span>(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle) {</div><div class="line">    <span class="keyword">super</span>(context, attrs, defStyle);</div><div class="line">    <span class="comment">//Use the array constant to read the bag once</span></div><div class="line">    TypedArray t = context.obtainStyledAttributes(attrs,</div><div class="line">                     R.styleable.CircleView,</div><div class="line">                     defStyle, <span class="comment">//if any values are in the theme</span></div><div class="line">                     <span class="number">0</span>); <span class="comment">//Do you have your own style group</span></div><div class="line">    <span class="comment">//Use the offset in the bag to get your value</span></div><div class="line">    strokeColor = t.getColor(R.styleable.CircleView_strokeColor, mDefaultStrokeColor);</div><div class="line">    strokeWidth = t.getInt(R.styleable.CircleView_strokeWidth, mDefaultStrokeWidth);</div><div class="line">    <span class="comment">//Recycle the typed array</span></div><div class="line">    t.recycle();</div><div class="line">    <span class="comment">//Go ahead and initialize your class.</span></div><div class="line">    initCircleView();</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>DON’T FORGET: TypedArrays are heavyweight objects that should be recycled immediately after all the attributes you need have been extracted.</p>
+</blockquote>
+<h3 id="6-_监听事件很简单，不讲了">6. 监听事件很简单，不讲了</h3>
+<h3 id="7-_状态保存">7. 状态保存</h3>
+<p>用系统的方式保存状态，万无一失，下面看模板:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> * ***************************************************************</div><div class="line"> * Save and restore work</div><div class="line"> * ***************************************************************</div><div class="line"> */</div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceState</span>(Parcelable p) {</div><div class="line">    <span class="keyword">this</span>.onRestoreInstanceStateStandard(p);</div><div class="line">    <span class="keyword">this</span>.initCircleView();</div><div class="line">}</div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> Parcelable <span class="title">onSaveInstanceState</span>() {</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.onSaveInstanceStateStandard();</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceStateStandard</span>(Parcelable state) {</div><div class="line">    <span class="comment">//If it is not yours doesn't mean it is BaseSavedState</span></div><div class="line">    <span class="comment">//You may have a parent in your hierarchy that has their own</span></div><div class="line">    <span class="comment">//state derived from BaseSavedState</span></div><div class="line">    <span class="comment">//It is like peeling an onion or a Russian doll</span></div><div class="line">    <span class="keyword">if</span> (!(state <span class="keyword">instanceof</span> SavedState)) {</div><div class="line">        <span class="keyword">super</span>.onRestoreInstanceState(state);</div><div class="line"><span class="keyword">return</span>; }</div><div class="line">    <span class="comment">//it is our state</span></div><div class="line">    SavedState ss = (SavedState)state;</div><div class="line">    <span class="comment">//Peel it and give the child to the super class</span></div><div class="line">    <span class="keyword">super</span>.onRestoreInstanceState(ss.getSuperState());</div><div class="line">    defRadius = ss.defRadius;</div><div class="line">}</div><div class="line"><span class="keyword">private</span> Parcelable <span class="title">onSaveInstanceStateStandard</span>() {</div><div class="line">    Parcelable superState = <span class="keyword">super</span>.onSaveInstanceState();</div><div class="line">    SavedState ss = <span class="keyword">new</span> SavedState(superState);</div><div class="line">    ss.defRadius = <span class="keyword">this</span>.defRadius;</div><div class="line"><span class="keyword">return</span> ss; }</div><div class="line"><span class="comment">/*</span></div><div class="line">* *************************************************************** * Saved State inner static class</div><div class="line">* *************************************************************** */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SavedState</span> <span class="keyword">extends</span> <span class="title">BaseSavedState</span> </span>{</div><div class="line">    <span class="keyword">int</span> defRadius;</div><div class="line">    SavedState(Parcelable superState) {</div><div class="line">        <span class="keyword">super</span>(superState);</div><div class="line">}</div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span>(Parcel out, <span class="keyword">int</span> flags) {</div><div class="line">        <span class="keyword">super</span>.writeToParcel(out, flags);</div><div class="line">        out.writeInt(defRadius);</div><div class="line">    }</div><div class="line">    <span class="comment">//Read back the values</span></div><div class="line">    <span class="keyword">private</span> <span class="title">SavedState</span>(Parcel in) {</div><div class="line"><span class="keyword">super</span>(in);</div><div class="line">        defRadius = in.readInt();</div><div class="line">    }</div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> String <span class="title">toString</span>() {</div><div class="line">        <span class="keyword">return</span> <span class="string">"CircleView defRadius:"</span> + defRadius;</div><div class="line">    }</div><div class="line">    <span class="annotation">@SuppressWarnings</span>(<span class="string">"hiding"</span>)</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Parcelable.Creator&lt;SavedState&gt; CREATOR</div><div class="line">            = <span class="keyword">new</span> Parcelable.Creator&lt;SavedState&gt;() {</div><div class="line">        <span class="keyword">public</span> SavedState <span class="title">createFromParcel</span>(Parcel in) {</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> SavedState(in);</div><div class="line">        }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> SavedState[] <span class="title">newArray</span>(<span class="keyword">int</span> size) {</div><div class="line">                <span class="keyword">return</span> <span class="keyword">new</span> SavedState[size];</div><div class="line">    } </div><div class="line">    };</div><div class="line">    }<span class="comment">//eof-state-class</span></div><div class="line">}<span class="comment">//eof-main-view class</span></div></pre></td></tr></table></figure>
+
+<h3 id="8-_参考链接">8. 参考链接</h3>
+<p><a href="https://www.youtube.com/watch?v=NYtB6mlu7vA" target="_blank" rel="external">https://www.youtube.com/watch?v=NYtB6mlu7vA</a><br><a href="https://thenewcircle.com/s/post/1663/tutorial_enhancing_android_ui_with_custom_views_dave_smith_video" target="_blank" rel="external">https://thenewcircle.com/s/post/1663/tutorial_enhancing_android_ui_with_custom_views_dave_smith_video</a><br><a href="https://dl.dropboxusercontent.com/u/16714463/Google%20IO%202014/Material%20Witness.pdf" target="_blank" rel="external">https://dl.dropboxusercontent.com/u/16714463/Google%20IO%202014/Material%20Witness.pdf</a><br><a href="http://developer.android.com/training/custom-views/index.html" target="_blank" rel="external">http://developer.android.com/training/custom-views/index.html</a><br><a href="http://developer.android.com/guide/topics/ui/custom-components.html" target="_blank" rel="external">http://developer.android.com/guide/topics/ui/custom-components.html</a></p>
+<p>《Expert Android》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/11/26/android-tutorial/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">android 学习资源</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android-custom-view" data-title="android 自定义View" data-url="http://reacoder.github.io/2014/11/28/android-custom-view/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"reacoder"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 Reacoder
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

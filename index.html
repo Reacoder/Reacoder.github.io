@@ -108,7 +108,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/hexo/" style="font-size: 20.00px;">hexo</a><a href="/tags/listview/" style="font-size: 20.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 10.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
+						<a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 10.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
 					</div>
 				</section>
 				
@@ -169,6 +169,140 @@
 	</div>
 </nav>
       
+  
+    <article id="post-android-custom-view" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/28/android-custom-view/" class="article-date">
+  	<time datetime="2014-11-28T08:35:39.000Z" itemprop="datePublished">Nov 28 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/customView/">customView</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/28/android-custom-view/">android 自定义View</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概览：">概览：</h3>
+<ol>
+<li>View 的生命周期</li>
+<li>Traversals</li>
+<li>Measure</li>
+<li>Draw</li>
+<li>Custom Attributes</li>
+<li>监听事件很简单，不讲了</li>
+<li>状态保存</li>
+<li>参考链接</li>
+</ol>
+<h3 id="1-_View_的生命周期">1. View 的生命周期</h3>
+<ul>
+<li>Attachment/detachment（一般不用care）</li>
+<li>Traversals（必须care）</li>
+<li>State save/restore（看你的需求了）</li>
+</ul>
+<p>Attachment的回调接口是<code>onAttachedToWindow()</code>，在这里你可以做以下操作</p>
+<ul>
+<li>Call super.onAttachedToWindow()!</li>
+<li>Perform any relevant state resets</li>
+<li>Start listening for state changes</li>
+</ul>
+<p>detachment的回调接口是<code>onDetachedFromWindow()</code>，在这里你可以做以下操作</p>
+<ul>
+<li>Call super.onDetachedFromWindow()!</li>
+<li>Remove any posted Runnables</li>
+<li>Stop listening for data changes</li>
+<li>Clean up resources <ul>
+<li>Bitmaps</li>
+<li>Threads</li>
+</ul>
+</li>
+</ul>
+<p>看看官方的<code>SwipeRefreshLayout</code>的运用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttachedToWindow</span>() {</div><div class="line">    <span class="keyword">super</span>.onAttachedToWindow();</div><div class="line">    removeCallbacks(mCancel);</div><div class="line">    removeCallbacks(mReturnToStartPosition);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDetachedFromWindow</span>() {</div><div class="line">    <span class="keyword">super</span>.onDetachedFromWindow();</div><div class="line">    removeCallbacks(mReturnToStartPosition);</div><div class="line">    removeCallbacks(mCancel);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>打个简单地比喻就是，如果你的View和网络操作相关的话，最好在这里做取消操作。它这里的操作其实就是取消或重置动画。好了，这里就不多说了，一般用不到。下面说说遍历Traversals。</p>
+<h3 id="2-_Traversals">2. Traversals</h3>
+<p>Traversals 分四个阶段</p>
+<p><strong>Animate—&gt;Measure—&gt;Layout—&gt;Draw</strong></p>
+<p>我们现在关心的是Measure和Draw，分别对应<code>onMeasure()</code>,<code>onDraw()</code>,先看看View的默认实现吧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span>(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec) {</div><div class="line">    setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),</div><div class="line">            getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));</div><div class="line">} </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getDefaultSize</span>(<span class="keyword">int</span> size, <span class="keyword">int</span> measureSpec) {</div><div class="line">    <span class="keyword">int</span> result = size;</div><div class="line">    <span class="keyword">int</span> specMode = MeasureSpec.getMode(measureSpec);</div><div class="line">    <span class="keyword">int</span> specSize = MeasureSpec.getSize(measureSpec);</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> (specMode) {</div><div class="line">    <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</div><div class="line">        result = size;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> MeasureSpec.AT_MOST:</div><div class="line">    <span class="keyword">case</span> MeasureSpec.EXACTLY:</div><div class="line">        result = specSize;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}    </div><div class="line">    </div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span>(Canvas canvas) {</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>现在来看看具体的Measure</p>
+<h3 id="3-_Measure">3. Measure</h3>
+<p>如果你自定义的View没有特殊尺寸要求的话，也可以不重写<code>onMeasure()</code>。现在来说说比较难理解的MeasureSpec 模式，三张图搞定它</p>
+<p><img src="http://img3.douban.com/view/photo/photo/public/p2213816665.jpg" alt="MeasureSpec.EXACTLY"></p>
+<p><img src="http://img3.douban.com/view/photo/photo/public/p2213816673.jpg" alt="MeasureSpec.AT_MOST"></p>
+<p><img src="http://img5.douban.com/view/photo/photo/public/p2213816669.jpg" alt="MeasureSpec.UNSPECIFIED"></p>
+<p>在<code>onMeasure()</code>里由于没有回调，框架依赖你最后设置尺寸，所以你一定要调用<code>setMeasuredDimension()</code>,否则运行时会crash。</p>
+<p>看看大牛Dave Smith 给的一个模板吧：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span>(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec) {</div><div class="line">        <span class="comment">//Get the width measurement</span></div><div class="line">        <span class="keyword">int</span> widthSize = MeasureUtils.getMeasurement(widthMeasureSpec, getDesiredWidth());</div><div class="line"></div><div class="line">        <span class="comment">//Get the height measurement</span></div><div class="line">        <span class="keyword">int</span> heightSize = MeasureUtils.getMeasurement(heightMeasureSpec, getDesiredHeight());</div><div class="line"></div><div class="line">        <span class="comment">//MUST call this to store the measurements</span></div><div class="line">        setMeasuredDimension(widthSize, heightSize);</div><div class="line">    }</div><div class="line">    </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MeasureUtils</span> </span>{</div><div class="line"></div><div class="line">    <span class="javadoc">/**</span></div><div class="line">     * Utility to return a view's standard measurement. Uses the</div><div class="line">     * supplied size when constraints are given. Attempts to</div><div class="line">     * hold to the desired size unless it conflicts with provided</div><div class="line">     * constraints.</div><div class="line">     *</div><div class="line">     *<span class="javadoctag"> @param</span> measureSpec Constraints imposed by the parent</div><div class="line">     *<span class="javadoctag"> @param</span> contentSize Desired size for the view</div><div class="line">     *<span class="javadoctag"> @return</span> The size the view should be.</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMeasurement</span>(<span class="keyword">int</span> measureSpec, <span class="keyword">int</span> contentSize) {</div><div class="line">        <span class="keyword">int</span> specMode = View.MeasureSpec.getMode(measureSpec);</div><div class="line">        <span class="keyword">int</span> specSize = View.MeasureSpec.getSize(measureSpec);</div><div class="line">        <span class="keyword">int</span> resultSize = <span class="number">0</span>;</div><div class="line">        <span class="keyword">switch</span> (specMode) {</div><div class="line">            <span class="keyword">case</span> View.MeasureSpec.UNSPECIFIED:</div><div class="line">                <span class="comment">//Big as we want to be</span></div><div class="line">                resultSize = contentSize;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> View.MeasureSpec.AT_MOST:</div><div class="line">                <span class="comment">//Big as we want to be, up to the spec</span></div><div class="line">                resultSize = Math.min(contentSize, specSize);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> View.MeasureSpec.EXACTLY:</div><div class="line">                <span class="comment">//Must be the spec size</span></div><div class="line">                resultSize = specSize;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">return</span> resultSize;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="4-_Draw">4. Draw</h3>
+<p>这其实没有太多要说的，<code>onDraw()</code>回调已经给你了一个Canvas，你要做的就是画各种你需要的东西了。看看Canvas的官方定义吧：</p>
+<blockquote>
+<p>The Canvas class holds the “draw” calls. To draw something, you need 4 basic components: A Bitmap to hold the pixels, a Canvas to host the draw calls (writing into the bitmap), a drawing primitive (e.g. Rect, Path, text, Bitmap), and a paint (to describe the colors and styles for the drawing).</p>
+</blockquote>
+<p>这里的Canvas已经包含一个immutable 的Bitmap了。需要注意的是<code>onDraw()</code>调用的很频繁，实例化对象的操作应该都放到外面。随便看个例子吧：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDraw</span>(Canvas canvas) {</div><div class="line">    <span class="keyword">super</span>.onDraw(canvas);</div><div class="line">    Log.d(tag,<span class="string">"onDraw called"</span>);</div><div class="line">    <span class="keyword">int</span> w = <span class="keyword">this</span>.getWidth();</div><div class="line">    <span class="keyword">int</span> h = <span class="keyword">this</span>.getHeight();</div><div class="line">    <span class="keyword">int</span> t = <span class="keyword">this</span>.getTop();</div><div class="line">    <span class="keyword">int</span> l = <span class="keyword">this</span>.getLeft();</div><div class="line">    <span class="keyword">int</span> ox = w/<span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> oy = h/<span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> rad = Math.min(ox,oy)/<span class="number">2</span>;</div><div class="line">    canvas.drawCircle(ox, oy, rad, getBrush());</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>其实这里的获取宽高的操作应该放到<code>onSizeChanged()</code>里面，这个是在<code>onLayout()</code>里调用的，而且一般只遍历一次。</p>
+<h3 id="5-_Custom_Attributes">5. Custom Attributes</h3>
+<p>这个没什么要讲的，看例子就理解了。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Listing 1-18. Defining Custom Attributes in attrs.xml</div><div class="line"><span class="tag">&lt;<span class="title">resources</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">declare-styleable</span> <span class="attribute">name</span>=<span class="value">"CircleView"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">attr</span> <span class="attribute">name</span>=<span class="value">"strokeWidth"</span> <span class="attribute">format</span>=<span class="value">"integer"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">attr</span> <span class="attribute">name</span>=<span class="value">"strokeColor"</span> <span class="attribute">format</span>=<span class="value">"color|reference"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">declare-styleable</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>下面这段好好理解<br>Given the attrs.xml in Listing 1-18, Android generates the following IDs:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">R.attr.strokeWidth (<span class="keyword">int</span>)</div><div class="line">R.attr.srokeColor (<span class="keyword">int</span>)</div><div class="line">R.styleable.CircelView (an array of ints)</div><div class="line">R.styleable.CircleView_strokeWidth (offset into the array)</div><div class="line">R.styleable.CircelView_strokeColor (offset into the array)</div></pre></td></tr></table></figure>
+
+<p>在初始化时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="title">CircleView</span>(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle) {</div><div class="line">    <span class="keyword">super</span>(context, attrs, defStyle);</div><div class="line">    <span class="comment">//Use the array constant to read the bag once</span></div><div class="line">    TypedArray t = context.obtainStyledAttributes(attrs,</div><div class="line">                     R.styleable.CircleView,</div><div class="line">                     defStyle, <span class="comment">//if any values are in the theme</span></div><div class="line">                     <span class="number">0</span>); <span class="comment">//Do you have your own style group</span></div><div class="line">    <span class="comment">//Use the offset in the bag to get your value</span></div><div class="line">    strokeColor = t.getColor(R.styleable.CircleView_strokeColor, mDefaultStrokeColor);</div><div class="line">    strokeWidth = t.getInt(R.styleable.CircleView_strokeWidth, mDefaultStrokeWidth);</div><div class="line">    <span class="comment">//Recycle the typed array</span></div><div class="line">    t.recycle();</div><div class="line">    <span class="comment">//Go ahead and initialize your class.</span></div><div class="line">    initCircleView();</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>DON’T FORGET: TypedArrays are heavyweight objects that should be recycled immediately after all the attributes you need have been extracted.</p>
+</blockquote>
+<h3 id="6-_监听事件很简单，不讲了">6. 监听事件很简单，不讲了</h3>
+<h3 id="7-_状态保存">7. 状态保存</h3>
+<p>用系统的方式保存状态，万无一失，下面看模板:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> * ***************************************************************</div><div class="line"> * Save and restore work</div><div class="line"> * ***************************************************************</div><div class="line"> */</div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceState</span>(Parcelable p) {</div><div class="line">    <span class="keyword">this</span>.onRestoreInstanceStateStandard(p);</div><div class="line">    <span class="keyword">this</span>.initCircleView();</div><div class="line">}</div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> Parcelable <span class="title">onSaveInstanceState</span>() {</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.onSaveInstanceStateStandard();</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceStateStandard</span>(Parcelable state) {</div><div class="line">    <span class="comment">//If it is not yours doesn't mean it is BaseSavedState</span></div><div class="line">    <span class="comment">//You may have a parent in your hierarchy that has their own</span></div><div class="line">    <span class="comment">//state derived from BaseSavedState</span></div><div class="line">    <span class="comment">//It is like peeling an onion or a Russian doll</span></div><div class="line">    <span class="keyword">if</span> (!(state <span class="keyword">instanceof</span> SavedState)) {</div><div class="line">        <span class="keyword">super</span>.onRestoreInstanceState(state);</div><div class="line"><span class="keyword">return</span>; }</div><div class="line">    <span class="comment">//it is our state</span></div><div class="line">    SavedState ss = (SavedState)state;</div><div class="line">    <span class="comment">//Peel it and give the child to the super class</span></div><div class="line">    <span class="keyword">super</span>.onRestoreInstanceState(ss.getSuperState());</div><div class="line">    defRadius = ss.defRadius;</div><div class="line">}</div><div class="line"><span class="keyword">private</span> Parcelable <span class="title">onSaveInstanceStateStandard</span>() {</div><div class="line">    Parcelable superState = <span class="keyword">super</span>.onSaveInstanceState();</div><div class="line">    SavedState ss = <span class="keyword">new</span> SavedState(superState);</div><div class="line">    ss.defRadius = <span class="keyword">this</span>.defRadius;</div><div class="line"><span class="keyword">return</span> ss; }</div><div class="line"><span class="comment">/*</span></div><div class="line">* *************************************************************** * Saved State inner static class</div><div class="line">* *************************************************************** */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SavedState</span> <span class="keyword">extends</span> <span class="title">BaseSavedState</span> </span>{</div><div class="line">    <span class="keyword">int</span> defRadius;</div><div class="line">    SavedState(Parcelable superState) {</div><div class="line">        <span class="keyword">super</span>(superState);</div><div class="line">}</div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span>(Parcel out, <span class="keyword">int</span> flags) {</div><div class="line">        <span class="keyword">super</span>.writeToParcel(out, flags);</div><div class="line">        out.writeInt(defRadius);</div><div class="line">    }</div><div class="line">    <span class="comment">//Read back the values</span></div><div class="line">    <span class="keyword">private</span> <span class="title">SavedState</span>(Parcel in) {</div><div class="line"><span class="keyword">super</span>(in);</div><div class="line">        defRadius = in.readInt();</div><div class="line">    }</div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> String <span class="title">toString</span>() {</div><div class="line">        <span class="keyword">return</span> <span class="string">"CircleView defRadius:"</span> + defRadius;</div><div class="line">    }</div><div class="line">    <span class="annotation">@SuppressWarnings</span>(<span class="string">"hiding"</span>)</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Parcelable.Creator&lt;SavedState&gt; CREATOR</div><div class="line">            = <span class="keyword">new</span> Parcelable.Creator&lt;SavedState&gt;() {</div><div class="line">        <span class="keyword">public</span> SavedState <span class="title">createFromParcel</span>(Parcel in) {</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> SavedState(in);</div><div class="line">        }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> SavedState[] <span class="title">newArray</span>(<span class="keyword">int</span> size) {</div><div class="line">                <span class="keyword">return</span> <span class="keyword">new</span> SavedState[size];</div><div class="line">    } </div><div class="line">    };</div><div class="line">    }<span class="comment">//eof-state-class</span></div><div class="line">}<span class="comment">//eof-main-view class</span></div></pre></td></tr></table></figure>
+
+<h3 id="8-_参考链接">8. 参考链接</h3>
+<p><a href="https://www.youtube.com/watch?v=NYtB6mlu7vA" target="_blank" rel="external">https://www.youtube.com/watch?v=NYtB6mlu7vA</a><br><a href="https://thenewcircle.com/s/post/1663/tutorial_enhancing_android_ui_with_custom_views_dave_smith_video" target="_blank" rel="external">https://thenewcircle.com/s/post/1663/tutorial_enhancing_android_ui_with_custom_views_dave_smith_video</a><br><a href="https://dl.dropboxusercontent.com/u/16714463/Google%20IO%202014/Material%20Witness.pdf" target="_blank" rel="external">https://dl.dropboxusercontent.com/u/16714463/Google%20IO%202014/Material%20Witness.pdf</a><br><a href="http://developer.android.com/training/custom-views/index.html" target="_blank" rel="external">http://developer.android.com/training/custom-views/index.html</a><br><a href="http://developer.android.com/guide/topics/ui/custom-components.html" target="_blank" rel="external">http://developer.android.com/guide/topics/ui/custom-components.html</a></p>
+<p>《Expert Android》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-android-tutorial" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -701,60 +835,6 @@
 
 <h3 id="4-ListView的工具方法">4.<code>ListView</code>的工具方法</h3>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> View <span class="title">getChildItemView</span>(Context context, FloatingGroupExpandableListView listView, <span class="keyword">int</span> groupPosition, <span class="keyword">int</span> childPosition) {</div><div class="line">    <span class="keyword">long</span> packedPosition = ExpandableListView.getPackedPositionForChild(groupPosition, childPosition);</div><div class="line">    <span class="keyword">int</span> flatPosition;</div><div class="line">    <span class="keyword">try</span> {</div><div class="line">        flatPosition = listView.getFlatListPosition(packedPosition);</div><div class="line">    } <span class="keyword">catch</span> (Exception e) {</div><div class="line">        e.printStackTrace();</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">int</span> firstPosition = listView.getFirstVisiblePosition();</div><div class="line">    <span class="keyword">int</span> wantedChild = flatPosition - firstPosition;</div><div class="line">    <span class="keyword">if</span> (wantedChild &lt; <span class="number">0</span> || wantedChild &gt;= listView.getChildCount()) {</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    View childItemView = listView.getChildAt(wantedChild);</div><div class="line">    childItemView.setTag(R.id.anim, AnimationUtils.loadAnimation(context, R.anim.slide_left_out));</div><div class="line">    <span class="keyword">return</span> childItemView;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> View <span class="title">getItemView</span>(Context context, ListView listView, <span class="keyword">int</span> position) {</div><div class="line">    <span class="keyword">int</span> firstPosition = listView.getFirstVisiblePosition() - listView.getHeaderViewsCount();</div><div class="line">    <span class="keyword">int</span> wantedChild = position - firstPosition;</div><div class="line">    <span class="keyword">if</span> (wantedChild &lt; <span class="number">0</span> || wantedChild &gt;= listView.getChildCount()) {</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    View wantedView = listView.getChildAt(wantedChild);</div><div class="line">    wantedView.setTag(R.id.anim, AnimationUtils.loadAnimation(context, R.anim.slide_left_out));</div><div class="line">    <span class="keyword">return</span> wantedView;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clearListViewAnim</span>(Context context, ListView listView) {</div><div class="line">    <span class="keyword">int</span> first = listView.getFirstVisiblePosition();</div><div class="line">    <span class="keyword">int</span> count = listView.getChildCount() + <span class="number">2</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = first; i &lt; first + count; i++) {</div><div class="line">        View itemView = getItemView(context, listView, i);</div><div class="line">        <span class="keyword">if</span> (itemView != <span class="keyword">null</span>) {</div><div class="line">            itemView.clearAnimation();</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-listview-refresh-over" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/11/24/listview-refresh-over/" class="article-date">
-  	<time datetime="2014-11-24T06:50:21.000Z" itemprop="datePublished">Nov 24 2014</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/listview/">listview</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/24/listview-refresh-over/">如何确保Listview刷新结束,然后再执行其他操作。</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>场景：</strong>当调用<code>Listview</code> 的<code>notifyDataSetChanged()</code>刷新列表时，执行滚动或点击按钮删除源数据，然后再次刷新列表。</p>
-<p><strong>方法：</strong>采用<code>View</code>的<code>post()</code>方法,把对数据源的操作加入消息队列，等待刷新结束，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">adapter.notifyDataSetChanged();</div><div class="line">view.post( <span class="keyword">new</span> Runnable() {</div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {</div><div class="line">    <span class="comment">//call smooth scroll</span></div><div class="line">    }</div><div class="line">  });</div></pre></td></tr></table></figure>
 
 
       
