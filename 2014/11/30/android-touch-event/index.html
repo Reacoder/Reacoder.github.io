@@ -3,53 +3,107 @@
 <head>
   <meta charset="utf-8">
   
-  <title>android 学习资源 | Reacoder</title>
+  <title>android touch事件传递机制 | Reacoder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="http://developer.android.com/training/basics/firstapp/index.html
+  <meta name="description" content="1.先看3张图吧
+child不消费touch事件
+
+child消费touch事件
+
+ViewGroup截获touch事件
+2.Android是怎么处理touch事件的？
 
 
-http://guides.codepath.com/android
 
 
-http://www.vogella.com/tutorials/android.html
 
-Android Programming Tutorials
-http://www.edumobi">
+
+
+3.自定义touch事件处理
+
+
+
+
+
+4.系统提供的touch事件监听处理函数
+
+
+
+5.更多关于多点触控和事件委托
+文档见 http://vdisk.weibo.com/s/dyk_6CfP2FIz_
+或者htt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android 学习资源">
-<meta property="og:url" content="http://reacoder.github.io/2014/11/26/android-tutorial/">
+<meta property="og:title" content="android touch事件传递机制">
+<meta property="og:url" content="http://reacoder.github.io/2014/11/30/android-touch-event/">
 <meta property="og:site_name" content="Reacoder">
-<meta property="og:description" content="http://developer.android.com/training/basics/firstapp/index.html
+<meta property="og:description" content="1.先看3张图吧
+child不消费touch事件
+
+child消费touch事件
+
+ViewGroup截获touch事件
+2.Android是怎么处理touch事件的？
 
 
-http://guides.codepath.com/android
 
 
-http://www.vogella.com/tutorials/android.html
 
-Android Programming Tutorials
-http://www.edumobi">
-<meta property="og:image" content="http://developer.android.com/assets/images/dac_logo@2x.png">
-<meta property="og:image" content="http://i.imgur.com/XgxWfyF.png">
-<meta property="og:image" content="http://www.vogella.com/img/logo/xindex_logo.png.pagespeed.ic.S0rT7Uq_V2.png">
-<meta property="og:image" content="http://www.technotalkative.com/wp-content/uploads/2013/11/tt_logo.png">
-<meta property="og:image" content="http://sampleprogramz.com/images/android/android.png">
-<meta property="og:image" content="http://ogrelab.ikratko.com/wp-content/themes/ogrelab/images/logo.png">
-<meta property="og:image" content="http://www.jayway.com/wp-content/uploads/2014/05/Jayway_logotype_180_invert.png">
-<meta property="og:image" content="http://square.github.io/images/logo.png">
-<meta property="og:image" content="http://vinsol.com/blog/wp-content/themes/Vinsol2.0BlogTheme/images/vin_logo.png">
+
+
+3.自定义touch事件处理
+
+
+
+
+
+4.系统提供的touch事件监听处理函数
+
+
+
+5.更多关于多点触控和事件委托
+文档见 http://vdisk.weibo.com/s/dyk_6CfP2FIz_
+或者htt">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1emt81ohhksj20sk0i5mzb.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1emt81pb1ozj20si0jitaz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/72589a09gw1emt81qnrgdj20sk0j6jtl.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rcubgqj20r10it0va.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/72589a09gw1emt8rdph4fj20ri0ijn13.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1emt8rei94nj20r00i8dix.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1emt8rfc4f6j20qh0idwi4.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rg6jc7j20ok0id77i.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rgtuivj20qr0i677z.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rhib0nj20ri0hhdjq.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1emt8ri60j4j20s10hnn08.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8ritrusj20qj0i2ad7.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="android 学习资源">
-<meta name="twitter:description" content="http://developer.android.com/training/basics/firstapp/index.html
+<meta name="twitter:title" content="android touch事件传递机制">
+<meta name="twitter:description" content="1.先看3张图吧
+child不消费touch事件
+
+child消费touch事件
+
+ViewGroup截获touch事件
+2.Android是怎么处理touch事件的？
 
 
-http://guides.codepath.com/android
 
 
-http://www.vogella.com/tutorials/android.html
 
-Android Programming Tutorials
-http://www.edumobi">
+
+
+3.自定义touch事件处理
+
+
+
+
+
+4.系统提供的touch事件监听处理函数
+
+
+
+5.更多关于多点触控和事件委托
+文档见 http://vdisk.weibo.com/s/dyk_6CfP2FIz_
+或者htt">
 
   
     <link rel="alternative" href="/atom.xml" title="Reacoder" type="application/atom+xml">
@@ -191,11 +245,11 @@ http://www.edumobi">
 		</header>				
 	</div>
 </nav>
-      <article id="post-android-tutorial" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-android-touch-event" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/11/26/android-tutorial/" class="article-date">
-  	<time datetime="2014-11-26T07:21:37.000Z" itemprop="datePublished">Nov 26 2014</time>
+      <a href="/2014/11/30/android-touch-event/" class="article-date">
+  	<time datetime="2014-11-30T10:10:39.000Z" itemprop="datePublished">Nov 30 2014</time>
 </a>
       
   <div class="article-category">
@@ -203,7 +257,7 @@ http://www.edumobi">
   </div>
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">tutorial</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/touchEvent/">touchEvent</a></li></ul>
 
     </div>
   
@@ -216,7 +270,7 @@ http://www.edumobi">
         
   
     <h1 class="article-title" itemprop="name">
-      android 学习资源
+      android touch事件传递机制
     </h1>
   
 
@@ -224,36 +278,34 @@ http://www.edumobi">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://developer.android.com/assets/images/dac_logo@2x.png" alt="developer"></p>
-<p><a href="http://developer.android.com/training/basics/firstapp/index.html" target="_blank" rel="external">http://developer.android.com/training/basics/firstapp/index.html</a></p>
+        <h3 id="1-先看3张图吧">1.先看3张图吧</h3>
+<p><strong>child不消费touch事件</strong><br><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt81ohhksj20sk0i5mzb.jpg" alt=""></p>
 <hr>
-<p><img src="http://i.imgur.com/XgxWfyF.png" alt="codepath"></p>
-<p><a href="http://guides.codepath.com/android" target="_blank" rel="external">http://guides.codepath.com/android</a></p>
+<p><strong>child消费touch事件</strong><br><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt81pb1ozj20si0jitaz.jpg" alt=""></p>
 <hr>
-<p><img src="http://www.vogella.com/img/logo/xindex_logo.png.pagespeed.ic.S0rT7Uq_V2.png" alt="vogella"></p>
-<p><a href="http://www.vogella.com/tutorials/android.html" target="_blank" rel="external">http://www.vogella.com/tutorials/android.html</a></p>
+<p><strong>ViewGroup截获touch事件</strong><br><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt81qnrgdj20sk0j6jtl.jpg" alt=""></p>
+<h3 id="2-Android是怎么处理touch事件的？">2.Android是怎么处理touch事件的？</h3>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rcubgqj20r10it0va.jpg" alt=""></p>
 <hr>
-<p><strong>Android Programming Tutorials</strong></p>
-<p><a href="http://www.edumobile.org/android/" target="_blank" rel="external">http://www.edumobile.org/android/</a></p>
+<p><img src="http://ww2.sinaimg.cn/mw690/72589a09gw1emt8rdph4fj20ri0ijn13.jpg" alt=""></p>
 <hr>
-<p><img src="http://www.technotalkative.com/wp-content/uploads/2013/11/tt_logo.png" alt=""></p>
-<p><a href="http://www.technotalkative.com/category/android/" target="_blank" rel="external">http://www.technotalkative.com/category/android/</a></p>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt8rei94nj20r00i8dix.jpg" alt=""></p>
 <hr>
-<p><img src="http://sampleprogramz.com/images/android/android.png" alt=""></p>
-<p><a href="http://sampleprogramz.com/android/slidingdrawer.php" target="_blank" rel="external">http://sampleprogramz.com/android/slidingdrawer.php</a></p>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt8rfc4f6j20qh0idwi4.jpg" alt=""></p>
+<h3 id="3-自定义touch事件处理">3.自定义touch事件处理</h3>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rg6jc7j20ok0id77i.jpg" alt=""></p>
 <hr>
-<p><img src="http://ogrelab.ikratko.com/wp-content/themes/ogrelab/images/logo.png" alt=""></p>
-<p><a href="http://ogrelab.ikratko.com/category/java/android/" target="_blank" rel="external">http://ogrelab.ikratko.com/category/java/android/</a></p>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rgtuivj20qr0i677z.jpg" alt=""></p>
 <hr>
-<p><img src="http://www.jayway.com/wp-content/uploads/2014/05/Jayway_logotype_180_invert.png" alt=""></p>
-<p><a href="http://www.jayway.com/tag/android/" target="_blank" rel="external">http://www.jayway.com/tag/android/</a></p>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rhib0nj20ri0hhdjq.jpg" alt=""></p>
+<h3 id="4-系统提供的touch事件监听处理函数">4.系统提供的touch事件监听处理函数</h3>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt8ri60j4j20s10hnn08.jpg" alt=""></p>
 <hr>
-<p><img src="http://square.github.io/images/logo.png" alt=""></p>
-<p><a href="http://square.github.io/" target="_blank" rel="external">http://square.github.io/</a></p>
-<hr>
-<p><img src="http://vinsol.com/blog/wp-content/themes/Vinsol2.0BlogTheme/images/vin_logo.png" alt=""></p>
-<p><a href="http://vinsol.com/blog/" target="_blank" rel="external">http://vinsol.com/blog/</a></p>
-<hr>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8ritrusj20qj0i2ad7.jpg" alt=""></p>
+<h3 id="5-更多关于多点触控和事件委托">5.更多关于多点触控和事件委托</h3>
+<p>文档见 <a href="http://vdisk.weibo.com/s/dyk_6CfP2FIz_" target="_blank" rel="external">http://vdisk.weibo.com/s/dyk_6CfP2FIz_</a></p>
+<p>或者<br><a href="http://files.cnblogs.com/sunzn/PRE_andevcon_mastering-the-android-touch-system.pdf" target="_blank" rel="external">http://files.cnblogs.com/sunzn/PRE_andevcon_mastering-the-android-touch-system.pdf</a></p>
+<p>视频<br><a href="https://www.youtube.com/watch?v=EZAoJU-nUyI" target="_blank" rel="external">https://www.youtube.com/watch?v=EZAoJU-nUyI</a></p>
 
       
     </div>
@@ -266,18 +318,18 @@ http://www.edumobi">
     
 <nav id="article-nav">
   
-    <a href="/2014/11/28/android-custom-view/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/12/01/about/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">&lt;</strong>
       <div class="article-nav-title">
         
-          android 自定义View
+          关于我
         
       </div>
     </a>
   
   
-    <a href="/2014/11/26/blog-you-need-to-reed/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">国外大牛们的博客</div>
+    <a href="/2014/11/29/android-custom-viewgroup/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">android 自定义ViewGroup</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -306,7 +358,7 @@ http://www.edumobi">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="android-tutorial" data-title="android 学习资源" data-url="http://reacoder.github.io/2014/11/26/android-tutorial/"></div>
+	<div class="ds-thread" data-thread-key="android-touch-event" data-title="android touch事件传递机制" data-url="http://reacoder.github.io/2014/11/30/android-touch-event/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
