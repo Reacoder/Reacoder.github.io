@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>如何裁剪图片(圆角图片) | Reacoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概览:
+
+采用Porter-Duff 图片合成方法
+采用Shader着色器重新绘制图片
+不规则图片裁剪
+心形图片裁剪
+参考链接
+
+先看下效果：
+  
+1. 采用Porter-Duff 图片合成方法
+先说说Porter-Duff是什么意思：Porter-Duff是Thomas Porter 和 Tom Duff 的简称，就是两个人名字的合成。
+
+Porter-Duff 操作是 1 组 12 项用于描">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何裁剪图片(圆角图片)">
+<meta property="og:url" content="http://reacoder.github.io/2014/12/05/irregular-image-shape/">
+<meta property="og:site_name" content="Reacoder">
+<meta property="og:description" content="概览:
+
+采用Porter-Duff 图片合成方法
+采用Shader着色器重新绘制图片
+不规则图片裁剪
+心形图片裁剪
+参考链接
+
+先看下效果：
+  
+1. 采用Porter-Duff 图片合成方法
+先说说Porter-Duff是什么意思：Porter-Duff是Thomas Porter 和 Tom Duff 的简称，就是两个人名字的合成。
+
+Porter-Duff 操作是 1 组 12 项用于描">
+<meta property="og:image" content="http://ww4.sinaimg.cn/small/72589a09gw1emylfap6unj20f00qo41j.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/small/72589a09gw1emylfbfdpqj20f00qo775.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/small/72589a09gw1emylfbzr4nj20f00qotaz.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/small/72589a09gw1emylf9nrc0j20b40etgnw.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/small/72589a09gw1emylfa6jp9j20b40ett8l.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfap6unj20f00qo41j.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1emyls3fjgyj20fk0hsn0i.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1emyls4l7ajj20qq0ol76x.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1emyls5jo08j21060mkgpk.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/72589a09gw1emyls3tem3j20jk08k3z1.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfap6unj20f00qo41j.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/72589a09gw1emylfbfdpqj20f00qo775.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/72589a09gw1emylfcmsu8j20f00qoacb.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfd8juhj20f00qodi3.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfdwiolj20f00qoabj.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfbzr4nj20f00qotaz.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何裁剪图片(圆角图片)">
+<meta name="twitter:description" content="概览:
+
+采用Porter-Duff 图片合成方法
+采用Shader着色器重新绘制图片
+不规则图片裁剪
+心形图片裁剪
+参考链接
+
+先看下效果：
+  
+1. 采用Porter-Duff 图片合成方法
+先说说Porter-Duff是什么意思：Porter-Duff是Thomas Porter 和 Tom Duff 的简称，就是两个人名字的合成。
+
+Porter-Duff 操作是 1 组 12 项用于描">
+
+  
+    <link rel="alternative" href="/atom.xml" title="Reacoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://tp2.sinaimg.cn/1918409225/180/40039469631/1">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Reacoder</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/Android/">Android</a></li>
+				        
+							<li><a href="/2014/12/01/about/">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Reacoder" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/1918409225" title="weibo">weibo</a>
+					        
+								<a class="google" target="_blank" href="https://plus.google.com/u/0/117706805140071058584/posts" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://tp2.sinaimg.cn/1918409225/180/40039469631/1">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Reacoder</a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/Android/">Android</a></li>
+		        
+					<li><a href="/2014/12/01/about/">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Reacoder" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1918409225" title="weibo">weibo</a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/u/0/117706805140071058584/posts" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-irregular-image-shape" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/05/irregular-image-shape/" class="article-date">
+  	<time datetime="2014-12-05T02:10:24.000Z" itemprop="datePublished">Dec 5 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/image/">image</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何裁剪图片(圆角图片)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概览:">概览:</h3>
+<ol>
+<li>采用Porter-Duff 图片合成方法</li>
+<li>采用Shader着色器重新绘制图片</li>
+<li>不规则图片裁剪</li>
+<li>心形图片裁剪</li>
+<li>参考链接</li>
+</ol>
+<p><em>先看下效果：</em></p>
+<p><img src="http://ww4.sinaimg.cn/small/72589a09gw1emylfap6unj20f00qo41j.jpg" alt=""> <img src="http://ww1.sinaimg.cn/small/72589a09gw1emylfbfdpqj20f00qo775.jpg" alt=""> <img src="http://ww4.sinaimg.cn/small/72589a09gw1emylfbzr4nj20f00qotaz.jpg" alt=""></p>
+<h3 id="1-_采用Porter-Duff_图片合成方法">1. 采用Porter-Duff 图片合成方法</h3>
+<p><em>先说说Porter-Duff是什么意思：Porter-Duff是Thomas Porter 和 Tom Duff 的简称，就是两个人名字的合成。</em></p>
+<blockquote>
+<p>Porter-Duff 操作是 1 组 12 项用于描述数字图像合成的基本手法，包括<br>Clear、Source Only、Destination Only、Source Over、Source In、Source<br>Out、Source Atop、Destination Over、Destination In、Destination<br>Out、Destination Atop、XOR。<strong>通过组合使用 Porter-Duff 操作，可完成任意 2D<br>图像的合成。</strong></p>
+</blockquote>
+<p>合成图片，顾名思义就是拿两张图片取需要的部分放到第三张图片上，合成一张新的图片。</p>
+<p>看看我们采用的两张图片吧：</p>
+<p><img src="http://ww4.sinaimg.cn/small/72589a09gw1emylf9nrc0j20b40etgnw.jpg" alt=""> <img src="http://ww2.sinaimg.cn/small/72589a09gw1emylfa6jp9j20b40ett8l.jpg" alt=""></p>
+<p>绿色的mask并不会把小狗整成绿色，因为合成的时候只取了mask的形状，alpha值为0。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Part1Fragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> View <span class="title">onCreateView</span>(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {</div><div class="line">        View view = inflater.inflate(R.layout.fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">        ImageView image = (ImageView) view.findViewById(R.id.image);</div><div class="line">        Bitmap dog = BitmapFactory.decodeResource(container.getResources(), R.drawable.betty);</div><div class="line">        Bitmap mask = BitmapFactory.decodeResource(container.getResources(), R.drawable.mask);</div><div class="line">        image.setImageBitmap(combineImages(mask, dog));</div><div class="line">        dog.recycle();</div><div class="line">        mask.recycle();</div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> Bitmap <span class="title">combineImages</span>(Bitmap mask, Bitmap dog) {</div><div class="line">        Bitmap bmp;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> width = mask.getWidth() &gt; dog.getWidth() ? mask.getWidth() : dog.getWidth();</div><div class="line">        <span class="keyword">int</span> height = mask.getHeight() &gt; dog.getHeight() ? mask.getHeight() : dog.getHeight();</div><div class="line"></div><div class="line">        bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);</div><div class="line">        Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">        paint.setXfermode(<span class="keyword">new</span> PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));</div><div class="line"></div><div class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">        canvas.drawBitmap(mask, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">null</span>);</div><div class="line">        canvas.drawBitmap(dog, <span class="number">0</span>, <span class="number">0</span>, paint);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bmp;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>合成之后就变成圆角图片了，如下：</p>
+<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfap6unj20f00qo41j.jpg" alt=""></p>
+<p><strong>原理：</strong> 我们先是用两张图片的最大尺寸创建了一个<code>mutable</code>的<code>Bitmap</code>，用来作为<code>Canvas</code>的画东西的地方。然后先画了mask，即<code>Dst</code>，接着把画笔<code>Paint</code> 的<code>XFerMode</code>设置成<code>SRC_ATOP</code>，然后把dog画上去，这样就实现了裁剪效果。</p>
+<p>估计你不太理解我说的东西，看下面一张图你就明白了(蓝色正方形是<code>Src</code>，就是你将要画上去的东西，黄色圆圈是<code>Dst</code>，即原来画布上有的东西)：</p>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emyls3fjgyj20fk0hsn0i.jpg" alt=""></p>
+<p>上面是一种合成方式，<strong>看另外一种合成方式：</strong></p>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emyls4l7ajj20qq0ol76x.jpg" alt=""></p>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emyls5jo08j21060mkgpk.jpg" alt=""></p>
+<p>好了，效果是达到了，但这样做有没有问题呢？<strong>问题如下：</strong></p>
+<ul>
+<li>mask的尺寸必须和原图一致，我们当然可以缩放mask，但如果缩放的宽高比和原图不一致会出现失真。</li>
+<li>最大的问题还是效率！为了实现裁剪，我们加载了两个图，如果图片很大就会<code>OutOfMemoryError</code>。</li>
+</ul>
+<h3 id="2-_采用Shader着色器重新绘制图片">2. 采用Shader着色器重新绘制图片</h3>
+<p><code>Shaders</code>着色器让我们可以在画东西的时候定义填充风格，<code>Shaders</code>是设置在画笔上的。<code>BitmapShader</code>是用一张<code>Bitmap</code>着色，而且还支持三种瓦片铺盖方式。所谓瓦片铺盖方式就是当我们画的区域比采用的Bitmap还大时，超出部分该怎么画。如下图(小方块就代表<code>Bitmap</code>)：</p>
+<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emyls3tem3j20jk08k3z1.jpg" alt=""></p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Part2Fragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> RADIUS_FACTOR = <span class="number">8.0</span>f;</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> View <span class="title">onCreateView</span>(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {</div><div class="line">        View view = inflater.inflate(R.layout.fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">        ImageView image = (ImageView)view.findViewById(R.id.image);</div><div class="line">        Bitmap bitmap = BitmapFactory.decodeResource(container.getResources(), R.drawable.betty);</div><div class="line">        image.setImageBitmap(processImage(bitmap));</div><div class="line">        bitmap.recycle();</div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> Bitmap <span class="title">processImage</span>(Bitmap bitmap) {</div><div class="line">        Bitmap bmp;</div><div class="line"></div><div class="line">        bmp = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">        BitmapShader shader = <span class="keyword">new</span> BitmapShader(bitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);</div><div class="line"></div><div class="line">        <span class="keyword">float</span> radius = Math.min(bitmap.getWidth(), bitmap.getHeight()) / RADIUS_FACTOR;</div><div class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">        Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">        paint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">        paint.setShader(shader);</div><div class="line"></div><div class="line">        RectF rect = <span class="keyword">new</span> RectF(<span class="number">0</span>, <span class="number">0</span>, bitmap.getWidth(), bitmap.getHeight());</div><div class="line">        canvas.drawRoundRect(rect, radius, radius, paint);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bmp;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfap6unj20f00qo41j.jpg" alt=""></p>
+<h3 id="3-_不规则图片裁剪">3. 不规则图片裁剪</h3>
+<p>对话框气泡，原理是一样的，看代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Part3Fragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> RADIUS_FACTOR = <span class="number">8.0</span>f;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRIANGLE_WIDTH = <span class="number">120</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRIANGLE_HEIGHT = <span class="number">100</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRIANGLE_OFFSET = <span class="number">300</span>;</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> View <span class="title">onCreateView</span>(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {</div><div class="line">        View view = inflater.inflate(R.layout.fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">        ImageView image = (ImageView)view.findViewById(R.id.image);</div><div class="line">        Bitmap bitmap = BitmapFactory.decodeResource(container.getResources(), R.drawable.betty);</div><div class="line">        image.setImageBitmap(processImage(bitmap));</div><div class="line">        bitmap.recycle();</div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> Bitmap <span class="title">processImage</span>(Bitmap bitmap) {</div><div class="line">        Bitmap bmp;</div><div class="line"></div><div class="line">        bmp = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">        BitmapShader shader = <span class="keyword">new</span> BitmapShader(bitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);</div><div class="line"></div><div class="line">        <span class="keyword">float</span> radius = Math.min(bitmap.getWidth(), bitmap.getHeight()) / RADIUS_FACTOR;</div><div class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">        Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">        paint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">        paint.setShader(shader);</div><div class="line"></div><div class="line">        RectF rect = <span class="keyword">new</span> RectF(TRIANGLE_WIDTH, <span class="number">0</span>, bitmap.getWidth(), bitmap.getHeight());</div><div class="line">        canvas.drawRoundRect(rect, radius, radius, paint);</div><div class="line"></div><div class="line">        Path triangle = <span class="keyword">new</span> Path();</div><div class="line">        triangle.moveTo(<span class="number">0</span>, TRIANGLE_OFFSET);</div><div class="line">        triangle.lineTo(TRIANGLE_WIDTH, TRIANGLE_OFFSET - (TRIANGLE_HEIGHT / <span class="number">2</span>));</div><div class="line">        triangle.lineTo(TRIANGLE_WIDTH, TRIANGLE_OFFSET + (TRIANGLE_HEIGHT / <span class="number">2</span>));</div><div class="line">        triangle.close();</div><div class="line">        canvas.drawPath(triangle, paint);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bmp;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>效果如下:</p>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emylfbfdpqj20f00qo775.jpg" alt=""></p>
+<h3 id="4-_心形图片裁剪">4. 心形图片裁剪</h3>
+<p>先设置<code>BitmapShader</code>, <code>Canvas</code>, 和 <code>Paint</code> 对象:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Bitmap bmp;</div><div class="line"> </div><div class="line">bmp = Bitmap.createBitmap(bitmap.getWidth(), </div><div class="line">    bitmap.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">BitmapShader shader = <span class="keyword">new</span> BitmapShader(bitmap, </div><div class="line">    BitmapShader.TileMode.CLAMP, </div><div class="line">    BitmapShader.TileMode.CLAMP);</div><div class="line"> </div><div class="line">Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">paint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">paint.setShader(shader);</div></pre></td></tr></table></figure>
+
+<p>再初始化一些后面需要用到的东西：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> width = bitmap.getWidth();</div><div class="line"><span class="keyword">float</span> height = bitmap.getHeight();</div><div class="line"></div><div class="line">Path oval = <span class="keyword">new</span> Path();</div><div class="line">Matrix matrix = <span class="keyword">new</span> Matrix();</div><div class="line">Region region = <span class="keyword">new</span> Region();</div></pre></td></tr></table></figure>
+
+<p>把长方形变成椭圆：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RectF ovalRect = <span class="keyword">new</span> RectF(width / <span class="number">8</span>, <span class="number">0</span>, </div><div class="line">    width - (width / <span class="number">8</span>), height);</div><div class="line">    </div><div class="line">oval.addOval(ovalRect, Path.Direction.CW);</div></pre></td></tr></table></figure>
+
+<p>得到如下图形：</p>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emylfcmsu8j20f00qoacb.jpg" alt=""></p>
+<p>旋转30度：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">matrix.postRotate(<span class="number">30</span>, width / <span class="number">2</span>, height / <span class="number">2</span>);</div><div class="line">oval.transform(matrix, oval);</div></pre></td></tr></table></figure>
+
+<p>得到如下图形：</p>
+<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfd8juhj20f00qodi3.jpg" alt=""></p>
+<p>再用<code>Region</code>裁剪:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">region.setPath(oval, <span class="keyword">new</span> Region((<span class="keyword">int</span>)width / <span class="number">2</span>, <span class="number">0</span>, </div><div class="line">    (<span class="keyword">int</span>)width, (<span class="keyword">int</span>)height));</div><div class="line">canvas.drawPath(region.getBoundaryPath(), paint);</div></pre></td></tr></table></figure>
+
+<p>得到如下图形：</p>
+<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfdwiolj20f00qoabj.jpg" alt=""></p>
+<p>同理再画另一边，画之前先复位:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">matrix.reset();</div><div class="line">oval.reset();</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">oval.addOval(ovalRect, Path.Direction.CW);</div><div class="line">matrix.postRotate(-<span class="number">30</span>, width / <span class="number">2</span>, height / <span class="number">2</span>);</div><div class="line">oval.transform(matrix, oval);</div><div class="line">region.setPath(oval, </div><div class="line">    <span class="keyword">new</span> Region(<span class="number">0</span>, <span class="number">0</span>, (<span class="keyword">int</span>)width / <span class="number">2</span>, (<span class="keyword">int</span>)height));</div><div class="line">canvas.drawPath(region.getBoundaryPath(), paint);</div></pre></td></tr></table></figure>
+
+<p>得到如下图形：</p>
+<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfbzr4nj20f00qotaz.jpg" alt=""></p>
+<p>全部代码放一起如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Part4Fragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> View <span class="title">onCreateView</span>(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {</div><div class="line">        View view = inflater.inflate(R.layout.fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">        ImageView image = (ImageView)view.findViewById(R.id.image);</div><div class="line">        Bitmap bitmap = BitmapFactory.decodeResource(container.getResources(), R.drawable.betty);</div><div class="line">        image.setImageBitmap(processImage(bitmap));</div><div class="line">        bitmap.recycle();</div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> Bitmap <span class="title">processImage</span>(Bitmap bitmap) {</div><div class="line">        Bitmap bmp;</div><div class="line"></div><div class="line">        bmp = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">        BitmapShader shader = <span class="keyword">new</span> BitmapShader(bitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);</div><div class="line"></div><div class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">        Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">        paint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">        paint.setShader(shader);</div><div class="line"></div><div class="line">        <span class="keyword">float</span> width = bitmap.getWidth();</div><div class="line">        <span class="keyword">float</span> height = bitmap.getHeight();</div><div class="line"></div><div class="line">        Path oval = <span class="keyword">new</span> Path();</div><div class="line">        Matrix matrix = <span class="keyword">new</span> Matrix();</div><div class="line">        Region region = <span class="keyword">new</span> Region();</div><div class="line">        RectF ovalRect = <span class="keyword">new</span> RectF(width / <span class="number">8</span>, <span class="number">0</span>, width - (width / <span class="number">8</span>), height);</div><div class="line"></div><div class="line">        oval.addOval(ovalRect, Path.Direction.CW);</div><div class="line">        matrix.postRotate(<span class="number">30</span>, width / <span class="number">2</span>, height / <span class="number">2</span>);</div><div class="line">        oval.transform(matrix, oval);</div><div class="line">        region.setPath(oval, <span class="keyword">new</span> Region((<span class="keyword">int</span>)width / <span class="number">2</span>, <span class="number">0</span>, (<span class="keyword">int</span>)width, (<span class="keyword">int</span>)height));</div><div class="line">        canvas.drawPath(region.getBoundaryPath(), paint);</div><div class="line"></div><div class="line">        matrix.reset();</div><div class="line">        oval.reset();</div><div class="line">        oval.addOval(ovalRect, Path.Direction.CW);</div><div class="line">        matrix.postRotate(-<span class="number">30</span>, width / <span class="number">2</span>, height / <span class="number">2</span>);</div><div class="line">        oval.transform(matrix, oval);</div><div class="line">        region.setPath(oval, <span class="keyword">new</span> Region(<span class="number">0</span>, <span class="number">0</span>, (<span class="keyword">int</span>)width / <span class="number">2</span>, (<span class="keyword">int</span>)height));</div><div class="line">        canvas.drawPath(region.getBoundaryPath(), paint);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bmp;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="5-_参考链接">5. 参考链接</h3>
+<p><a href="http://www.douban.com/note/143111853/" target="_blank" rel="external">http://www.douban.com/note/143111853/</a></p>
+<p><a href="http://blog.stylingandroid.com/category/canvas/" target="_blank" rel="external">http://blog.stylingandroid.com/category/canvas/</a></p>
+<p><a href="http://chiuki.github.io/android-shaders-filters/#/" target="_blank" rel="external">http://chiuki.github.io/android-shaders-filters/#/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/12/01/about/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于我</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="irregular-image-shape" data-title="如何裁剪图片(圆角图片)" data-url="http://reacoder.github.io/2014/12/05/irregular-image-shape/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"reacoder"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 Reacoder
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

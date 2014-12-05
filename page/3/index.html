@@ -101,7 +101,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
+						<a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
 					</div>
 				</section>
 				
@@ -156,6 +156,72 @@
 	</div>
 </nav>
       
+  
+    <article id="post-common-used-cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/24/common-used-cmd/" class="article-date">
+  	<time datetime="2014-11-24T06:48:34.000Z" itemprop="datePublished">Nov 24 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adb/">adb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/24/common-used-cmd/">常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-retrace_error_log">1.retrace error log</h3>
+<p>Proguard wants each “at” on a separate line, and only with white space before it. If it sees anything but white space before the at, it will not unobfuscate it.</p>
+<p>每行以at 开头，前面只能有空格，不能有其他。</p>
+<p><code>/Users/samzhao/Documents/adt-bundle-mac-x86_64-20131030/sdk/tools/proguard/bin/retrace.sh -verbose mapping.txt 1.txt</code></p>
+<h3 id="2-让gitignore_起作用">2.让gitignore 起作用</h3>
+<p>Even if you haven’t tracked the files so far, git seems to be able to “know” about them even after you add them to .gitignore.<br>A quick fix that I’ve used was to run the following commands from the top folder of your git repo:</p>
+<p><code>git rm -r --cached .</code></p>
+<p>Followed by:</p>
+<p><code>git add .</code></p>
+<p>and</p>
+<p><code>git commit -m &quot;fixed untracked files&quot;</code></p>
+<h3 id="3-让git不跟踪文件的变化">3.让git不跟踪文件的变化</h3>
+<p><code>git update-index --assume-unchanged &lt;file&gt;</code></p>
+<h3 id="4-git_命令参考">4.git 命令参考</h3>
+<p><a href="http://rogerdudler.github.io/git-guide/index.zh.html" target="_blank" rel="external">git - 简明指南</a></p>
+<p><a href="http://git-scm.com/docs" target="_blank" rel="external">http://git-scm.com/docs</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-android-good-video" class="article article-type-post" itemscope itemprop="blogPost">
   
