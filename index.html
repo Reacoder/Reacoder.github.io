@@ -101,7 +101,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/gradle/" style="font-size: 10.00px;">gradle</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
+						<a href="/tags/Studio/" style="font-size: 10.00px;">Studio</a><a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/gradle/" style="font-size: 10.00px;">gradle</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
 					</div>
 				</section>
 				
@@ -156,6 +156,82 @@
 	</div>
 </nav>
       
+  
+    <article id="post-android-studio-1-0-build" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/30/android-studio-1-0-build/" class="article-date">
+  	<time datetime="2014-12-30T08:18:06.000Z" itemprop="datePublished">Dec 30 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Studio/">Studio</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/30/android-studio-1-0-build/">Android studio 1.0 RC更新</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="build-gradle改动：">build.gradle改动：</h3>
+<h3 id="1-buildTypes-&gt;release-&gt;runProguard()">1.buildTypes-&gt;release-&gt;runProguard()</h3>
+<p>这里是runProguard()方法被替换了，<br>把runProguard改为minifyEnabled即可。</p>
+<h3 id="2-productFlavors-&gt;google-&gt;packageName=’com-toprankapps-snapgrab’">2.productFlavors-&gt;google-&gt;packageName=’com.toprankapps.snapgrab’</h3>
+<p>这里是packageName=’com.alinaapps.privatealbum’已经被替换，<br>改成applicationId ‘com.alinaapps.privatealbum’。</p>
+<h3 id="3-buildTypes-&gt;applicationVariants-all">3.buildTypes-&gt;applicationVariants.all</h3>
+<p>这里的applicationVariants.all方法中packageApplication这个属性被取消了。</p>
+<p>原来:</p>
+<p>applicationVariants.all { variant -&gt;<br>apk = variant.packageApplication.outputFile;<br>newName = apk.name.replace(“.apk”, “-v” + defaultConfig.versionName + “.apk”);<br>newName = newName.replace(“app”, “PrivateAlbum”);<br>variant.packageApplication.outputFile = new File(apk.parentFile, newName);<br>if (variant.zipAlign) {<br>variant.zipAlign.outputFile = new File(apk.parentFile, newName.replace(“-unaligned”, “”));<br>}<br>}</p>
+<p>现在:</p>
+<p>applicationVariants.all{ variant -&gt;<br>def apk = variant.outputs[0].outputFile;<br>def versionName = android.defaultConfig.versionName;<br>def newName = “”;<br>if (variant.buildType.name == “release”) {<br>newName = apk.name.replace(“.apk”, “_V” + versionName + “_release.apk”);<br>} else {<br>newName = apk.name.replace(“.apk”, “_V” + versionName + “_debug.apk”);<br>}<br>newName = newName.replace(“-“ + variant.buildType.name, “”);<br>variant.outputs[0].outputFile = new File(apk.parentFile, newName);<br>if (variant.outputs[0].zipAlign) {<br>variant.outputs[0].zipAlign.outputFile = new File(apk.parentFile, newName.replace(“-unaligned”, “”));<br>}<br>}</p>
+<h3 id="4-android_studio中的plugin也发生了改变">4.android studio中的plugin也发生了改变</h3>
+<p>这里是将”apply plugin: ‘android’，<br>改为”apply plugin: ‘com.android.application’</p>
+<h3 id="5-_resConfigs，shrinkResources_去除无用资源">5. resConfigs，shrinkResources 去除无用资源</h3>
+<p>defaultConfig {</p>
+<p>// …</p>
+<p>resConfigs “en”, “de”, “fr”, “it”<br>resConfigs “nodpi”, “hdpi”, “xhdpi”, “xxhdpi”, “xxxhdpi”<br>}</p>
+<p>保留指定资源目录，去除库项目可能存在的冗余资源</p>
+<p>shrinkResources 使用注意项目是否存在反射获取资源</p>
+<h3 id="6-_Java_SDK_版本建议用_7_支持_Android_API_Level_8_及以上">6. Java SDK 版本建议用 7 支持 Android API Level 8 及以上</h3>
+<p>compileOptions {<br>sourceCompatibility JavaVersion.VERSION_1_7<br>targetCompatibility JavaVersion.VERSION_1_7<br>}</p>
+<p>Added support for Java 7 language features like multi-catch, try-with-resources, and the diamond operator.</p>
+<p>Try-with-resources requires minSdkVersion 19; the rest of the new language features require minSdkVersion 8 or higher.</p>
+<p>项目规模较小可以考虑采用 JDK 8，lambda 有助于代码简洁，配合 Rxjava 是极好的</p>
+<p>使用见 <a href="https://github.com/evant/gradle-retrolambda" target="_blank" rel="external">https://github.com/evant/gradle-retrolambda</a></p>
+<p>Android Studio 对 lambda 的支持也是极好的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-gradle-build" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -632,103 +708,6 @@
 <h3 id="7-参考链接">7.参考链接</h3>
 <p><a href="http://reacoder.github.io/2014/11/23/android-good-video/" target="_blank" rel="external">http://reacoder.github.io/2014/11/23/android-good-video/</a></p>
 <p>《ExpertAndroid》</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-android-compound-view" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/11/29/android-compound-view/" class="article-date">
-  	<time datetime="2014-11-29T04:04:15.000Z" itemprop="datePublished">Nov 29 2014</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/customView/">customView</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/29/android-compound-view/">android 自定义组合控件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="概论：">概论：</h3>
-<ol>
-<li>说在前面的话</li>
-<li>继承框架提供的布局</li>
-<li>布局文件</li>
-<li>构造方法</li>
-<li>状态保存</li>
-</ol>
-<h3 id="1-说在前面的话">1.说在前面的话</h3>
-<p><em>自定义组合控件还是蛮简单的，你不用measure，layout，draw，当然你想的话也可以在组合控件上做这些操作的，不过大多数时候是没有必要的。组合控件的自定义属性和自定义view完全一样，这里比较难的是状态保存，因为一个页面可以有很多个你自定义的组合控件，但是系统的状态保存是依赖viewID的，所以你不能让ViewGroup来管理你的控件状态，只能自己管理了。当然，你也可能不需要状态保存，那就很简单了。</em></p>
-<p><strong>下面说说需要经历的步骤吧：</strong></p>
-<ul>
-<li>让自定义的组合控件继承框架提供的布局，如<code>LinearLayout</code>,<code>RelativeLayout</code>等。</li>
-<li>把你组合控件里面的子控件放到一个布局文件中，然后在组合控件的构造方法中加载进来。</li>
-<li>采用<code>merge</code>作为你布局文件的根，这样可以减少嵌套层次。</li>
-<li>接下来是比较难的状态保存。</li>
-<li>自定义属性，这个和自定义view一样。</li>
-</ul>
-<h3 id="2-继承框架提供的布局">2.继承框架提供的布局</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompoundControl</span></span></div><div class="line"><span class="keyword">extends</span> <span class="title">LinearLayout</span></div><div class="line"><span class="keyword">implements</span> <span class="title">android</span>.<span class="title">view</span>.<span class="title">View</span>.<span class="title">OnClickListener</span></div><div class="line">{</div><div class="line">...</div></pre></td></tr></table></figure>
-
-<h3 id="3-布局文件">3.布局文件</h3>
-<p>样例如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">merge</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">LinearLayout</span></span></div><div class="line">    <span class="attribute">android:orientation</span>=<span class="value">"horizontal"</span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"fill_parent"</span></div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span></div><div class="line">&gt;</div><div class="line"><span class="tag">&lt;<span class="title">TextView</span>  </span></div><div class="line">	<span class="attribute">android:id</span>=<span class="value">"@+id/fromDate"</span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"0dp"</span> </div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> </div><div class="line">    <span class="attribute">android:text</span>=<span class="value">"Enter From Date"</span></div><div class="line">    <span class="attribute">android:layout_weight</span>=<span class="value">"70"</span> </div><div class="line">    /&gt;</div><div class="line"><span class="tag">&lt;<span class="title">Button</span>  </span></div><div class="line">	<span class="attribute">android:id</span>=<span class="value">"@+id/fromButton"</span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"0dp"</span> </div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> </div><div class="line">    <span class="attribute">android:text</span>=<span class="value">"Go"</span></div><div class="line">    <span class="attribute">android:layout_weight</span>=<span class="value">"30"</span> </div><div class="line">    /&gt;</div><div class="line"><span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span>        </div><div class="line"><span class="tag">&lt;<span class="title">LinearLayout</span></span></div><div class="line">    <span class="attribute">android:orientation</span>=<span class="value">"horizontal"</span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"fill_parent"</span></div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span></div><div class="line">&gt;</div><div class="line"><span class="tag">&lt;<span class="title">TextView</span>  </span></div><div class="line">	<span class="attribute">android:id</span>=<span class="value">"@+id/toDate"</span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"0dp"</span> </div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> </div><div class="line">    <span class="attribute">android:text</span>=<span class="value">"Enter To Date"</span></div><div class="line">    <span class="attribute">android:layout_weight</span>=<span class="value">"70"</span> </div><div class="line">    /&gt;</div><div class="line"><span class="tag">&lt;<span class="title">Button</span>  </span></div><div class="line">	<span class="attribute">android:id</span>=<span class="value">"@+id/toButton"</span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"0dp"</span> </div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> </div><div class="line">    <span class="attribute">android:text</span>=<span class="value">"Go"</span></div><div class="line">    <span class="attribute">android:layout_weight</span>=<span class="value">"30"</span> </div><div class="line">    /&gt;</div><div class="line"><span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span>        </div><div class="line"><span class="tag">&lt;/<span class="title">merge</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="4-构造方法">4.构造方法</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="title">DurationControl</span>(Context context) {</div><div class="line">	<span class="keyword">super</span>(context);</div><div class="line">	initialize(context);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="title">DurationControl</span>(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle) {</div><div class="line">	<span class="keyword">super</span>(context, attrs, defStyle);</div><div class="line">	TypedArray t = context.obtainStyledAttributes(attrs,</div><div class="line">			R.styleable.DurationComponent, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">	durationUnits = t.getInt(R.styleable.DurationComponent_durationUnits,</div><div class="line">			durationUnits);</div><div class="line">	t.recycle();</div><div class="line">	initialize(context);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="title">DurationControl</span>(Context context, AttributeSet attrs) {</div><div class="line">	<span class="keyword">this</span>(context, attrs, <span class="number">0</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span>(Context context) {</div><div class="line">	LayoutInflater lif = (LayoutInflater) context</div><div class="line">			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</div><div class="line">	lif.inflate(R.layout.duration_view_layout, <span class="keyword">this</span>);</div><div class="line">	Button b = (Button) <span class="keyword">this</span>.findViewById(R.id.fromButton);</div><div class="line">	b.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">	b = (Button) <span class="keyword">this</span>.findViewById(R.id.toButton);</div><div class="line">	b.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">	</div><div class="line">	<span class="keyword">this</span>.setSaveEnabled(<span class="keyword">true</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="5-状态保存">5.状态保存</h3>
-<p><em>前面说过了，由于你控件可能会在一个页面出现多次，所以viewID会重复，这样系统就没办法帮你管理状态了。所以如果你要管理children的状态，就必须亲自动手了，而不是让children自己管理自己的状态。</em></p>
-<p>要想管理children的状态，你必须要知道ViewGroup的四个状态管理的方法，他们是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dispatchSaveInstanceState</div><div class="line">dispatchFreezeSelfOnly</div><div class="line">dispatchRestoreInstanceState</div><div class="line">dispatchThawSelfOnly</div></pre></td></tr></table></figure>
-
-<blockquote>
-<p>A ViewGroup uses dispatchSaveInstanceState to first save its own state by calling super (view’s) dispatchSaveInstanceState, which in turn triggers onSaveInstanceState on itself and then calls the dispatchSaveInstanceState for each of its children. If the children are plain views and not ViewGroups, this will result in having their onSaveInstanceState called. Listing 2-12 presents the pseudo code for how these key methods are meshed together.</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">ViewGroup.dispatchSaveInstanceState() {</div><div class="line">          View.dispatchSaveInstanceState()</div><div class="line">              ...ends up calling its own ViewGroup.onSaveInstanceState()</div><div class="line">          Children.dispatchSaveInstanceState()</div><div class="line">          ...ends up calling children's onSaveInstanceState()</div><div class="line">}</div><div class="line"></div><div class="line">View.dispatchSaveInstanceState() {</div><div class="line">        onSaveInstanceState()</div><div class="line">}</div><div class="line"></div><div class="line">ViewGroup.dispatchFreezeSelfOnly() {</div><div class="line">        View.dispatchSaveInstanceState()</div><div class="line">             ...ends up calling ViewGroup.onSaveInstanceState()</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-
-<p>技巧在于<code>dispatchFreezeSelfOnly</code>,这个ViewGroup方法只是简单的保存了ViewGroup的状态，这同样也发生在对应的恢复<code>dispatchThawSelfOnly</code>上。所以你可以重写ViewGroup的方法来阻止children自己管理状态。如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">dispatchSaveInstanceState</span>(SparseArray&lt;Parcelable&gt; container)</div><div class="line">{</div><div class="line">  <span class="comment">//Don't call this so that children won't be explicitly saved</span></div><div class="line">  <span class="comment">//super.dispatchSaveInstanceState(container);</span></div><div class="line">  <span class="comment">//Call your self onsavedinstancestate</span></div><div class="line">  <span class="keyword">super</span>.dispatchFreezeSelfOnly(container);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">dispatchRestoreInstanceState</span>(</div><div class="line">   SparseArray&lt;Parcelable&gt; container)</div><div class="line">{</div><div class="line">  <span class="comment">//Don't call this so that children won't be explicitly saved</span></div><div class="line">  <span class="comment">//super.dispatchRestoreInstanceState(container);</span></div><div class="line">  <span class="keyword">super</span>.dispatchThawSelfOnly(container);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>接下来就需要ViewGroup在<code>onSaveInstanceState</code> 和 <code>onRestoreInstanceState</code>中管理children的状态了，实例代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">dispatchSaveInstanceState</span>(SparseArray&lt;Parcelable&gt; container) {</div><div class="line">	<span class="comment">// Don't call this so that children won't be explicitly saved</span></div><div class="line">	<span class="comment">// super.dispatchSaveInstanceState(container);</span></div><div class="line">	<span class="comment">// Call your self onsavedinstancestate</span></div><div class="line">	<span class="keyword">super</span>.dispatchFreezeSelfOnly(container);</div><div class="line">	Log.d(tag, <span class="string">"in dispatchSaveInstanceState"</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">dispatchRestoreInstanceState</span>(</div><div class="line">		SparseArray&lt;Parcelable&gt; container) {</div><div class="line">	<span class="comment">// Don't call this so that children won't be explicitly saved</span></div><div class="line">	<span class="comment">// .super.dispatchRestoreInstanceState(container);</span></div><div class="line">	<span class="keyword">super</span>.dispatchThawSelfOnly(container);</div><div class="line">	Log.d(tag, <span class="string">"in dispatchRestoreInstanceState"</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceState</span>(Parcelable state) {</div><div class="line">	Log.d(tag, <span class="string">"in onRestoreInstanceState"</span>);</div><div class="line">	<span class="keyword">if</span> (!(state <span class="keyword">instanceof</span> SavedState)) {</div><div class="line">		<span class="keyword">super</span>.onRestoreInstanceState(state);</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	}</div><div class="line">	<span class="comment">// it is our state</span></div><div class="line">	SavedState ss = (SavedState) state;</div><div class="line">	<span class="comment">// Peel it and give the child to the super class</span></div><div class="line">	<span class="keyword">super</span>.onRestoreInstanceState(ss.getSuperState());</div><div class="line">	<span class="comment">// this.fromDate = ss.fromDate;</span></div><div class="line">	<span class="comment">// this.toDate= ss.toDate;</span></div><div class="line">	<span class="keyword">this</span>.setFromDate(ss.fromDate);</div><div class="line">	<span class="keyword">this</span>.setToDate(ss.toDate);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">protected</span> Parcelable <span class="title">onSaveInstanceState</span>() {</div><div class="line">	Log.d(tag, <span class="string">"in onSaveInstanceState"</span>);</div><div class="line">	Parcelable superState = <span class="keyword">super</span>.onSaveInstanceState();</div><div class="line">	SavedState ss = <span class="keyword">new</span> SavedState(superState);</div><div class="line">	ss.fromDate = <span class="keyword">this</span>.fromDate;</div><div class="line">	ss.toDate = <span class="keyword">this</span>.toDate;</div><div class="line">	<span class="keyword">return</span> ss;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> * ***************************************************************</div><div class="line"> * Saved State inner static class</div><div class="line"> * ***************************************************************</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SavedState</span> <span class="keyword">extends</span> <span class="title">BaseSavedState</span> </span>{</div><div class="line">	<span class="comment">// null values are allowed</span></div><div class="line">	<span class="keyword">private</span> Calendar fromDate;</div><div class="line">	<span class="keyword">private</span> Calendar toDate;</div><div class="line"></div><div class="line">	SavedState(Parcelable superState) {</div><div class="line">		<span class="keyword">super</span>(superState);</div><div class="line">	}</div><div class="line"></div><div class="line">	SavedState(Parcelable superState, Calendar inFromDate, Calendar inToDate) {</div><div class="line">		<span class="keyword">super</span>(superState);</div><div class="line">		fromDate = inFromDate;</div><div class="line">		toDate = inToDate;</div><div class="line">	}</div><div class="line">	<span class="annotation">@Override</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span>(Parcel out, <span class="keyword">int</span> flags) {</div><div class="line">		<span class="keyword">super</span>.writeToParcel(out, flags);</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (fromDate != <span class="keyword">null</span>) {</div><div class="line">			out.writeLong(fromDate.getTimeInMillis());</div><div class="line">		} <span class="keyword">else</span> {</div><div class="line">			out.writeLong(-<span class="number">1</span>L);</div><div class="line">		}</div><div class="line">		<span class="keyword">if</span> (fromDate != <span class="keyword">null</span>) {</div><div class="line">			out.writeLong(toDate.getTimeInMillis());</div><div class="line">		} <span class="keyword">else</span> {</div><div class="line">			out.writeLong(-<span class="number">1</span>L);</div><div class="line">		}</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="annotation">@Override</span></div><div class="line">	<span class="keyword">public</span> String <span class="title">toString</span>() {</div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">"fromDate:"</span></div><div class="line">				+ DurationControl.getDateString(fromDate));</div><div class="line">		sb.append(<span class="string">"fromDate:"</span> + DurationControl.getDateString(toDate));</div><div class="line">		<span class="keyword">return</span> sb.toString();</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="annotation">@SuppressWarnings</span>(<span class="string">"hiding"</span>)</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Parcelable.Creator&lt;SavedState&gt; CREATOR </div><div class="line">	   = <span class="keyword">new</span> Parcelable.Creator&lt;SavedState&gt;() {</div><div class="line">		<span class="keyword">public</span> SavedState <span class="title">createFromParcel</span>(Parcel in) {</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> SavedState(in);</div><div class="line">		}</div><div class="line"></div><div class="line">		<span class="keyword">public</span> SavedState[] <span class="title">newArray</span>(<span class="keyword">int</span> size) {</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> SavedState[size];</div><div class="line">		}</div><div class="line">	};</div><div class="line"></div><div class="line">	<span class="comment">// Read back the values</span></div><div class="line">	<span class="keyword">private</span> <span class="title">SavedState</span>(Parcel in) {</div><div class="line">		<span class="keyword">super</span>(in);</div><div class="line"></div><div class="line">		<span class="comment">// Read the from date</span></div><div class="line">		<span class="keyword">long</span> lFromDate = in.readLong();</div><div class="line">		<span class="keyword">if</span> (lFromDate == -<span class="number">1</span>) {</div><div class="line">			fromDate = <span class="keyword">null</span>;</div><div class="line">		} <span class="keyword">else</span> {</div><div class="line">			fromDate = Calendar.getInstance();</div><div class="line">			fromDate.setTimeInMillis(lFromDate);</div><div class="line">		}</div><div class="line">		<span class="comment">// Read the from date</span></div><div class="line">		<span class="keyword">long</span> lToDate = in.readLong();</div><div class="line">		<span class="keyword">if</span> (lFromDate == -<span class="number">1</span>) {</div><div class="line">			toDate = <span class="keyword">null</span>;</div><div class="line">		} <span class="keyword">else</span> {</div><div class="line">			toDate = Calendar.getInstance();</div><div class="line">			toDate.setTimeInMillis(lToDate);</div><div class="line">		}</div><div class="line">	}</div><div class="line">}<span class="comment">// eof-state-class</span></div></pre></td></tr></table></figure>
-
-<p><em>其实这就相当于把整个组合控件当成一个View来管理</em></p>
 
       
     </div>
