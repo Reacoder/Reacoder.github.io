@@ -101,7 +101,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/Studio/" style="font-size: 10.00px;">Studio</a><a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/gradle/" style="font-size: 10.00px;">gradle</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
+						<a href="/tags/Studio/" style="font-size: 10.00px;">Studio</a><a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/gradle/" style="font-size: 10.00px;">gradle</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/menu/" style="font-size: 10.00px;">menu</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/toolbar/" style="font-size: 10.00px;">toolbar</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
 					</div>
 				</section>
 				
@@ -156,6 +156,73 @@
 	</div>
 </nav>
       
+  
+    <article id="post-right-upper-corner-textview" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/24/right-upper-corner-textview/" class="article-date">
+  	<time datetime="2014-11-24T14:14:40.000Z" itemprop="datePublished">Nov 24 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/customView/">customView</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spannableString/">spannableString</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/textView/">textView</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/24/right-upper-corner-textview/">textview带有右上角文字</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://img.my.csdn.net/uploads/201411/25/1416884514_7020.png" alt="rightuptext pic"></p>
+<h3 id="1-RightUpperCornerText_代码">1.<code>RightUpperCornerText</code> 代码</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RightUpperCornerText</span> <span class="keyword">extends</span> <span class="title">TextView</span> </span>{</div><div class="line">    <span class="keyword">private</span> Paint mPaint;</div><div class="line">    <span class="keyword">private</span> String mCornerText;</div><div class="line">    <span class="keyword">private</span> Context mContext;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="title">RightUpperCornerText</span>(Context context) {</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">        init(context);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="title">RightUpperCornerText</span>(Context context, AttributeSet attrs) {</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        init(context);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="title">RightUpperCornerText</span>(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle) {</div><div class="line">        <span class="keyword">super</span>(context, attrs, defStyle);</div><div class="line">        init(context);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span>(Context context) {</div><div class="line">        mContext = context;</div><div class="line">        mPaint = <span class="keyword">new</span> Paint();</div><div class="line">        mPaint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">        mPaint.setColor(Color.WHITE);</div><div class="line"></div><div class="line">        <span class="keyword">float</span> cornerSize = getTextSize() * <span class="number">0.6</span>f;</div><div class="line">        <span class="keyword">if</span> (cornerSize &gt; <span class="number">50</span>) {</div><div class="line">            cornerSize = <span class="number">50</span>;</div><div class="line">        }</div><div class="line">        mPaint.setTextSize(cornerSize);</div><div class="line">        mCornerText = <span class="string">""</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span>(Canvas canvas) {</div><div class="line">        <span class="keyword">super</span>.onDraw(canvas);</div><div class="line"></div><div class="line">        <span class="comment">// 不要忘了设置 Padding</span></div><div class="line">        String text = (String) getText();</div><div class="line">        Rect bounds = <span class="keyword">new</span> Rect();</div><div class="line">        getPaint().getTextBounds(text, <span class="number">0</span>, text.length(), bounds);</div><div class="line">        canvas.drawText(mCornerText, getPaddingLeft() + bounds.right + bounds.left,</div><div class="line">                (canvas.getHeight() + bounds.top) / <span class="number">2</span> + mPaint.measureText(mCornerText),</div><div class="line">                mPaint);</div><div class="line"></div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCornertext</span>(String text) {</div><div class="line">        mCornerText = text;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCornertextSize</span>(<span class="keyword">float</span> size) {</div><div class="line">        mPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,</div><div class="line">                size, mContext.getResources().getDisplayMetrics()));</div><div class="line">        invalidate();</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="2-_用法">2. 用法</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">com.ilegendsoft.toprankapps.cleanmaster.UI.RightUpperCornerText</span></span></div><div class="line">    <span class="attribute">android:id</span>=<span class="value">"@+id/dashboard_percentage"</span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span></div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span></div><div class="line">    <span class="attribute">android:padding</span>=<span class="value">"20dp"</span></div><div class="line">    <span class="attribute">android:layout_centerInParent</span>=<span class="value">"true"</span></div><div class="line">    <span class="attribute">android:textColor</span>=<span class="value">"@android:color/white"</span></div><div class="line">    <span class="attribute">android:textSize</span>=<span class="value">"26sp"</span> /&gt;</div></pre></td></tr></table></figure>
+
+<p><code>mPercentageView.setCornertext(cornerText);</code></p>
+<p><strong>注意</strong> <code>android:padding=&quot;20dp&quot;</code>设置padding 很重要，否则没地方画了。</p>
+<h3 id="3-_其实完全没必要自定义，采用TextView_Style可以实现各种样式的字体排版，就是SpannableString">3. 其实完全没必要自定义，采用<code>TextView Style</code>可以实现各种样式的字体排版，就是<code>SpannableString</code></h3>
+<p>先看下图片</p>
+<p><img src="http://orgcent.com/wp-content/uploads/2012/04/textview_spannablestring.jpg" alt="复合文本图片"></p>
+<p>具体参考如下链接：</p>
+<ul>
+<li><a href="http://orgcent.com/android-textview-spannablestring-span/" target="_blank" rel="external">TextView使用SpannableString设置复合文本</a></li>
+<li><a href="http://blog.csdn.net/lixin84915/article/details/8110667" target="_blank" rel="external">Android文本样式</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-listview-animation" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -513,73 +580,9 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/11/22/hello-world/" class="article-date">
-  	<time datetime="2014-11-22T03:28:43.000Z" itemprop="datePublished">Nov 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/22/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -587,7 +590,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2014 Reacoder
+    		&copy; 2015 Reacoder
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
