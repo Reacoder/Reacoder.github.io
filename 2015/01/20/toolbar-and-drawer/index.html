@@ -3,17 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reacoder</title>
+  <title>toolbar 和 drawer 搭配 | Reacoder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Reacoder">
-<meta property="og:url" content="http://reacoder.github.io/">
+  <meta name="description" content="1.先看看效果
+  
+2.定义style.xml
+1234567891011121314151617181920212223242526272829&lt;resources&gt;    &lt;!-- Base application theme. --&gt;    &lt;style name='AppTheme' parent='AppTheme.Base'&gt;        &lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="toolbar 和 drawer 搭配">
+<meta property="og:url" content="http://reacoder.github.io/2015/01/20/toolbar-and-drawer/">
 <meta property="og:site_name" content="Reacoder">
-<meta property="og:description">
+<meta property="og:description" content="1.先看看效果
+  
+2.定义style.xml
+1234567891011121314151617181920212223242526272829&lt;resources&gt;    &lt;!-- Base application theme. --&gt;    &lt;style name='AppTheme' parent='AppTheme.Base'&gt;        &lt">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1eofv0fy9fzj20a50hwdgf.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/72589a09gw1eofv0g52doj20a40hpt9b.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reacoder">
-<meta name="twitter:description">
+<meta name="twitter:title" content="toolbar 和 drawer 搭配">
+<meta name="twitter:description" content="1.先看看效果
+  
+2.定义style.xml
+1234567891011121314151617181920212223242526272829&lt;resources&gt;    &lt;!-- Base application theme. --&gt;    &lt;style name='AppTheme' parent='AppTheme.Base'&gt;        &lt">
 
   
     <link rel="alternative" href="/atom.xml" title="Reacoder" type="application/atom+xml">
@@ -155,9 +166,7 @@
 		</header>				
 	</div>
 </nav>
-      
-  
-    <article id="post-toolbar-and-drawer" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-toolbar-and-drawer" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/01/20/toolbar-and-drawer/" class="article-date">
@@ -181,8 +190,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/20/toolbar-and-drawer/">toolbar 和 drawer 搭配</a>
+    <h1 class="article-title" itemprop="name">
+      toolbar 和 drawer 搭配
     </h1>
   
 
@@ -213,438 +222,59 @@
     </footer>
   </div>
   
-</article>
-
-
-
-
-
-
-  
-    <article id="post-android-custom-menu" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/01/19/android-custom-menu/" class="article-date">
-  	<time datetime="2015-01-19T03:48:46.000Z" itemprop="datePublished">Jan 19 2015</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/menu/">menu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/toolbar/">toolbar</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/19/android-custom-menu/">android 自定义toolBar上的 action item</a>
-    </h1>
   
+    <a href="/2015/01/19/android-custom-menu/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">android 自定义toolBar上的 action item</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-先看一下效果">1.先看一下效果</h3>
-<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1eoeoyncff7j20jw0k3wfu.jpg" alt=""></p>
-<h3 id="2-自定义的view，action_view_auto_like-xml">2.自定义的view，action_view_auto_like.xml</h3>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">FrameLayout</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span></div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="title">ImageButton</span></span></div><div class="line">        <span class="attribute">android:id</span>=<span class="value">"@+id/action_auto_like_button"</span></div><div class="line">        <span class="attribute">android:layout_width</span>=<span class="value">"70dp"</span></div><div class="line">        <span class="attribute">android:layout_height</span>=<span class="value">"30dp"</span></div><div class="line">        <span class="attribute">android:scaleType</span>=<span class="value">"centerInside"</span></div><div class="line">        <span class="attribute">android:background</span>=<span class="value">"@android:color/transparent"</span></div><div class="line">        <span class="attribute">android:src</span>=<span class="value">"@drawable/btn_nav_autoliker"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="title">ImageButton</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">FrameLayout</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="3-自定义的menu，menu_tinder_liker-xml">3.自定义的menu，menu_tinder_liker.xml</h3>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">menu</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attribute">xmlns:tinder</span>=<span class="value">"http://schemas.android.com/apk/res-auto"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="title">item</span></span></div><div class="line">        <span class="attribute">android:id</span>=<span class="value">"@+id/action_auto"</span></div><div class="line">        <span class="attribute">android:actionLayout</span>=<span class="value">"@layout/action_view_auto_like"</span></div><div class="line">        <span class="attribute">android:icon</span>=<span class="value">"@drawable/btn_nav_autoliker"</span></div><div class="line">        <span class="attribute">android:orderInCategory</span>=<span class="value">"1"</span></div><div class="line">        <span class="attribute">android:title</span>=<span class="value">"@string/action_auto_like"</span></div><div class="line">        <span class="attribute">tinder:actionLayout</span>=<span class="value">"@layout/action_view_auto_like"</span></div><div class="line">        <span class="attribute">tinder:showAsAction</span>=<span class="value">"always"</span>/&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="title">menu</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="4-在fragment_中配置">4.在fragment 中配置</h3>
-<p>现在<code>onCreateView</code>中加上<code>setHasOptionsMenu(true);</code>，让系统在fragment中初始化menu。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="annotation">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateOptionsMenu</span>(Menu menu, MenuInflater inflater) {</div><div class="line">    inflater.inflate(R.menu.menu_tinder_like, menu);</div><div class="line">    MenuItem searchItem = menu.findItem(R.id.action_auto);</div><div class="line">    FrameLayout layout = (FrameLayout) MenuItemCompat</div><div class="line">            .getActionView(searchItem);</div><div class="line">    layout.findViewById(R.id.action_auto_like_button)</div><div class="line">            .setOnClickListener(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">super</span>.onCreateOptionsMenu(menu, inflater);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>然后在<code>onClick</code>中加入你的逻辑。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
   
 </article>
 
 
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
-
-  
-    <article id="post-android-studio-1-0-build" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/30/android-studio-1-0-build/" class="article-date">
-  	<time datetime="2014-12-30T08:18:06.000Z" itemprop="datePublished">Dec 30 2014</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Studio/">Studio</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/30/android-studio-1-0-build/">Android studio 1.0 RC更新</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="build-gradle改动：">build.gradle改动：</h3>
-<h3 id="1-buildTypes-&gt;release-&gt;runProguard()">1.buildTypes-&gt;release-&gt;runProguard()</h3>
-<p>这里是runProguard()方法被替换了，<br>把runProguard改为minifyEnabled即可。</p>
-<h3 id="2-productFlavors-&gt;google-&gt;packageName=’com-toprankapps-snapgrab’">2.productFlavors-&gt;google-&gt;packageName=’com.toprankapps.snapgrab’</h3>
-<p>这里是packageName=’com.alinaapps.privatealbum’已经被替换，<br>改成applicationId ‘com.alinaapps.privatealbum’。</p>
-<h3 id="3-buildTypes-&gt;applicationVariants-all">3.buildTypes-&gt;applicationVariants.all</h3>
-<p>这里的applicationVariants.all方法中packageApplication这个属性被取消了。</p>
-<p>原来:</p>
-<p>applicationVariants.all { variant -&gt;<br>apk = variant.packageApplication.outputFile;<br>newName = apk.name.replace(“.apk”, “-v” + defaultConfig.versionName + “.apk”);<br>newName = newName.replace(“app”, “PrivateAlbum”);<br>variant.packageApplication.outputFile = new File(apk.parentFile, newName);<br>if (variant.zipAlign) {<br>variant.zipAlign.outputFile = new File(apk.parentFile, newName.replace(“-unaligned”, “”));<br>}<br>}</p>
-<p>现在:</p>
-<p>applicationVariants.all{ variant -&gt;<br>def apk = variant.outputs[0].outputFile;<br>def versionName = android.defaultConfig.versionName;<br>def newName = “”;<br>if (variant.buildType.name == “release”) {<br>newName = apk.name.replace(“.apk”, “_V” + versionName + “_release.apk”);<br>} else {<br>newName = apk.name.replace(“.apk”, “_V” + versionName + “_debug.apk”);<br>}<br>newName = newName.replace(“-“ + variant.buildType.name, “”);<br>variant.outputs[0].outputFile = new File(apk.parentFile, newName);<br>if (variant.outputs[0].zipAlign) {<br>variant.outputs[0].zipAlign.outputFile = new File(apk.parentFile, newName.replace(“-unaligned”, “”));<br>}<br>}</p>
-<h3 id="4-android_studio中的plugin也发生了改变">4.android studio中的plugin也发生了改变</h3>
-<p>这里是将”apply plugin: ‘android’，<br>改为”apply plugin: ‘com.android.application’</p>
-<h3 id="5-_resConfigs，shrinkResources_去除无用资源">5. resConfigs，shrinkResources 去除无用资源</h3>
-<p>defaultConfig {</p>
-<p>// …</p>
-<p>resConfigs “en”, “de”, “fr”, “it”<br>resConfigs “nodpi”, “hdpi”, “xhdpi”, “xxhdpi”, “xxxhdpi”<br>}</p>
-<p>保留指定资源目录，去除库项目可能存在的冗余资源</p>
-<p>shrinkResources 使用注意项目是否存在反射获取资源</p>
-<h3 id="6-_Java_SDK_版本建议用_7_支持_Android_API_Level_8_及以上">6. Java SDK 版本建议用 7 支持 Android API Level 8 及以上</h3>
-<p>compileOptions {<br>sourceCompatibility JavaVersion.VERSION_1_7<br>targetCompatibility JavaVersion.VERSION_1_7<br>}</p>
-<p>Added support for Java 7 language features like multi-catch, try-with-resources, and the diamond operator.</p>
-<p>Try-with-resources requires minSdkVersion 19; the rest of the new language features require minSdkVersion 8 or higher.</p>
-<p>项目规模较小可以考虑采用 JDK 8，lambda 有助于代码简洁，配合 Rxjava 是极好的</p>
-<p>使用见 <a href="https://github.com/evant/gradle-retrolambda" target="_blank" rel="external">https://github.com/evant/gradle-retrolambda</a></p>
-<p>Android Studio 对 lambda 的支持也是极好的</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="toolbar-and-drawer" data-title="toolbar 和 drawer 搭配" data-url="http://reacoder.github.io/2015/01/20/toolbar-and-drawer/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"reacoder"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
-
-
-
-  
-    <article id="post-gradle-build" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/05/gradle-build/" class="article-date">
-  	<time datetime="2014-12-05T06:38:54.000Z" itemprop="datePublished">Dec 5 2014</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/">gradle</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/05/gradle-build/">gradle 编译命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>Android Studio</code>的项目中自带了<code>gradle</code> 编译环境，如下图：<br><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emysp5vs01j20fp0d0dgq.jpg" alt=""></p>
-<p><code>gradle wrapper</code> 避免了<code>gradle</code> 因版本不同引发的种种问题，使你不用在本地安装<code>gradle</code> 就可以执行编译命令。</p>
-<ol>
-<li><p><code>server:CardViewSample samzhao$ ./gradlew clean assemble</code></p>
-<p>先清理以前编译过的文件再编译，耗时最长。我这次编译用了</p>
-<p><code>BUILD SUCCESSFUL</code></p>
-<p><code>Total time: 32.394 secs</code></p>
-</li>
-<li><p><code>server:CardViewSample samzhao$ ./gradlew assemble</code></p>
-<p>不清理，采用以前编译好的，不需要重新编译的文件进行编译。许多编译项目后面都跟有<code>UP-TO-DATE</code>，如：<br><code>:app:compileDebugAidl UP-TO-DATE</code><br>这主要是更新了文件的时间戳，没有进行重新编译。这次时间明显减少了：</p>
-<p><code>BUILD SUCCESSFUL</code></p>
-<p><code>Total time: 8.394 secs</code></p>
-</li>
-<li><p><code>server:CardViewSample samzhao$ ./gradlew assemble --daemon</code></p>
-<p>加上<code>--daemon</code>后缀就不用每次编译时都把<code>gradle</code>重新加载到内存了，第一次用<code>--daemon</code>，编译时间还是8秒多，但第二次运行就快很多了，如下：</p>
-<p><code>BUILD SUCCESSFUL</code></p>
-<p><code>Total time: 4.021 secs</code></p>
-</li>
-</ol>
-<p>编译好的apk在如下位置：</p>
-<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emytzr9qjmj20yy0d5q5m.jpg" alt=""></p>
-<p><strong>其实<code>clean</code>和<code>assemble</code>都是<code>gradle</code>的<code>task</code></strong></p>
-<p>查询tasks，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">server:CardViewSample samzhao$ ./gradlew -q tasks</div><div class="line"></div><div class="line">------------------------------------------------------------</div><div class="line">All tasks runnable from root project</div><div class="line">------------------------------------------------------------</div><div class="line"></div><div class="line">Android tasks</div><div class="line">-------------</div><div class="line">androidDependencies - Displays the Android dependencies of the project</div><div class="line">signingReport - Displays the signing info <span class="keyword">for</span> each variant</div><div class="line"></div><div class="line">Build tasks</div><div class="line">-----------</div><div class="line">assemble - Assembles all variants of all applications and secondary packages.</div><div class="line">assembleDebug - Assembles all Debug builds</div><div class="line">assembleDebugTest - Assembles the Test build <span class="keyword">for</span> the Debug build</div><div class="line">assembleRelease - Assembles all Release builds</div><div class="line">build - Assembles and tests this project.</div><div class="line">buildDependents - Assembles and tests this project and all projects that depend on it.</div><div class="line">buildNeeded - Assembles and tests this project and all projects it depends on.</div><div class="line">clean - Deletes the build directory.</div><div class="line"></div><div class="line">Build Setup tasks</div><div class="line">-----------------</div><div class="line">init - Initializes a new Gradle build. [incubating]</div><div class="line">wrapper - Generates Gradle wrapper files. [incubating]</div><div class="line"></div><div class="line">Help tasks</div><div class="line">----------</div><div class="line">dependencies - Displays all dependencies declared <span class="keyword">in</span> root project <span class="string">'CardViewSample'</span>.</div><div class="line">dependencyInsight - Displays the insight into a specific dependency <span class="keyword">in</span> root project <span class="string">'CardViewSample'</span>.</div><div class="line"><span class="built_in">help</span> - Displays a <span class="built_in">help</span> message</div><div class="line">projects - Displays the sub-projects of root project <span class="string">'CardViewSample'</span>.</div><div class="line">properties - Displays the properties of root project <span class="string">'CardViewSample'</span>.</div><div class="line">tasks - Displays the tasks runnable from root project <span class="string">'CardViewSample'</span> (some of the displayed tasks may belong to subprojects).</div><div class="line"></div><div class="line">Install tasks</div><div class="line">-------------</div><div class="line">installDebug - Installs the Debug build</div><div class="line">installDebugTest - Installs the Test build <span class="keyword">for</span> the Debug build</div><div class="line">uninstallAll - Uninstall all applications.</div><div class="line">uninstallDebug - Uninstalls the Debug build</div><div class="line">uninstallDebugTest - Uninstalls the Test build <span class="keyword">for</span> the Debug build</div><div class="line">uninstallRelease - Uninstalls the Release build</div><div class="line"></div><div class="line">Verification tasks</div><div class="line">------------------</div><div class="line">check - Runs all checks.</div><div class="line">connectedAndroidTest - Installs and runs the tests <span class="keyword">for</span> Build <span class="string">'debug'</span> on connected devices.</div><div class="line">connectedCheck - Runs all device checks on currently connected devices.</div><div class="line">deviceCheck - Runs all device checks using Device Providers and Test Servers.</div><div class="line">lint - Runs lint on all variants.</div><div class="line">lintDebug - Runs lint on the Debug build</div><div class="line">lintRelease - Runs lint on the Release build</div><div class="line"></div><div class="line">To see all tasks and more detail, run with --all.</div><div class="line">server:CardViewSample samzhao$</div></pre></td></tr></table></figure>
-
-<p><strong>参考链接：</strong></p>
-<p><a href="http://blog.stylingandroid.com/tag/gradle-2/" target="_blank" rel="external">http://blog.stylingandroid.com/tag/gradle-2/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-irregular-image-shape" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/05/irregular-image-shape/" class="article-date">
-  	<time datetime="2014-12-05T02:10:24.000Z" itemprop="datePublished">Dec 5 2014</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/image/">image</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/05/irregular-image-shape/">如何裁剪图片(圆角图片)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="概览:">概览:</h3>
-<ol>
-<li>采用Porter-Duff 图片合成方法</li>
-<li>采用Shader着色器重新绘制图片</li>
-<li>不规则图片裁剪</li>
-<li>心形图片裁剪</li>
-<li>参考链接</li>
-</ol>
-<p><em>先看下效果：</em></p>
-<p><img src="http://ww4.sinaimg.cn/small/72589a09gw1emylfap6unj20f00qo41j.jpg" alt=""> <img src="http://ww1.sinaimg.cn/small/72589a09gw1emylfbfdpqj20f00qo775.jpg" alt=""> <img src="http://ww4.sinaimg.cn/small/72589a09gw1emylfbzr4nj20f00qotaz.jpg" alt=""></p>
-<h3 id="1-_采用Porter-Duff_图片合成方法">1. 采用Porter-Duff 图片合成方法</h3>
-<p><em>先说说Porter-Duff是什么意思：Porter-Duff是Thomas Porter 和 Tom Duff 的简称，就是两个人名字的合成。</em></p>
-<blockquote>
-<p>Porter-Duff 操作是 1 组 12 项用于描述数字图像合成的基本手法，包括<br>Clear、Source Only、Destination Only、Source Over、Source In、Source<br>Out、Source Atop、Destination Over、Destination In、Destination<br>Out、Destination Atop、XOR。<strong>通过组合使用 Porter-Duff 操作，可完成任意 2D<br>图像的合成。</strong></p>
-</blockquote>
-<p>合成图片，顾名思义就是拿两张图片取需要的部分放到第三张图片上，合成一张新的图片。</p>
-<p>看看我们采用的两张图片吧：</p>
-<p><img src="http://ww4.sinaimg.cn/small/72589a09gw1emylf9nrc0j20b40etgnw.jpg" alt=""> <img src="http://ww2.sinaimg.cn/small/72589a09gw1emylfa6jp9j20b40ett8l.jpg" alt=""></p>
-<p>绿色的mask并不会把小狗整成绿色，因为合成的时候只取了mask的形状，alpha值为0。代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Part1Fragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> View <span class="title">onCreateView</span>(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {</div><div class="line">        View view = inflater.inflate(R.layout.fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">        ImageView image = (ImageView) view.findViewById(R.id.image);</div><div class="line">        Bitmap dog = BitmapFactory.decodeResource(container.getResources(), R.drawable.betty);</div><div class="line">        Bitmap mask = BitmapFactory.decodeResource(container.getResources(), R.drawable.mask);</div><div class="line">        image.setImageBitmap(combineImages(mask, dog));</div><div class="line">        dog.recycle();</div><div class="line">        mask.recycle();</div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> Bitmap <span class="title">combineImages</span>(Bitmap mask, Bitmap dog) {</div><div class="line">        Bitmap bmp;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> width = mask.getWidth() &gt; dog.getWidth() ? mask.getWidth() : dog.getWidth();</div><div class="line">        <span class="keyword">int</span> height = mask.getHeight() &gt; dog.getHeight() ? mask.getHeight() : dog.getHeight();</div><div class="line"></div><div class="line">        bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);</div><div class="line">        Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">        paint.setXfermode(<span class="keyword">new</span> PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));</div><div class="line"></div><div class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">        canvas.drawBitmap(mask, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">null</span>);</div><div class="line">        canvas.drawBitmap(dog, <span class="number">0</span>, <span class="number">0</span>, paint);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bmp;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>合成之后就变成圆角图片了，如下：</p>
-<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfap6unj20f00qo41j.jpg" alt=""></p>
-<p><strong>原理：</strong> 我们先是用两张图片的最大尺寸创建了一个<code>mutable</code>的<code>Bitmap</code>，用来作为<code>Canvas</code>的画东西的地方。然后先画了mask，即<code>Dst</code>，接着把画笔<code>Paint</code> 的<code>XFerMode</code>设置成<code>SRC_ATOP</code>，然后把dog画上去，这样就实现了裁剪效果。</p>
-<p>估计你不太理解我说的东西，看下面一张图你就明白了(蓝色正方形是<code>Src</code>，就是你将要画上去的东西，黄色圆圈是<code>Dst</code>，即原来画布上有的东西)：</p>
-<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emyls3fjgyj20fk0hsn0i.jpg" alt=""></p>
-<p>上面是一种合成方式，<strong>看另外一种合成方式：</strong></p>
-<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emyls4l7ajj20qq0ol76x.jpg" alt=""></p>
-<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emyls5jo08j21060mkgpk.jpg" alt=""></p>
-<p>好了，效果是达到了，但这样做有没有问题呢？<strong>问题如下：</strong></p>
-<ul>
-<li>mask的尺寸必须和原图一致，我们当然可以缩放mask，但如果缩放的宽高比和原图不一致会出现失真。</li>
-<li>最大的问题还是效率！为了实现裁剪，我们加载了两个图，如果图片很大就会<code>OutOfMemoryError</code>。</li>
-</ul>
-<h3 id="2-_采用Shader着色器重新绘制图片">2. 采用Shader着色器重新绘制图片</h3>
-<p><code>Shaders</code>着色器让我们可以在画东西的时候定义填充风格，<code>Shaders</code>是设置在画笔上的。<code>BitmapShader</code>是用一张<code>Bitmap</code>着色，而且还支持三种瓦片铺盖方式。所谓瓦片铺盖方式就是当我们画的区域比采用的Bitmap还大时，超出部分该怎么画。如下图(小方块就代表<code>Bitmap</code>)：</p>
-<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emyls3tem3j20jk08k3z1.jpg" alt=""></p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Part2Fragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> RADIUS_FACTOR = <span class="number">8.0</span>f;</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> View <span class="title">onCreateView</span>(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {</div><div class="line">        View view = inflater.inflate(R.layout.fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">        ImageView image = (ImageView)view.findViewById(R.id.image);</div><div class="line">        Bitmap bitmap = BitmapFactory.decodeResource(container.getResources(), R.drawable.betty);</div><div class="line">        image.setImageBitmap(processImage(bitmap));</div><div class="line">        bitmap.recycle();</div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> Bitmap <span class="title">processImage</span>(Bitmap bitmap) {</div><div class="line">        Bitmap bmp;</div><div class="line"></div><div class="line">        bmp = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">        BitmapShader shader = <span class="keyword">new</span> BitmapShader(bitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);</div><div class="line"></div><div class="line">        <span class="keyword">float</span> radius = Math.min(bitmap.getWidth(), bitmap.getHeight()) / RADIUS_FACTOR;</div><div class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">        Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">        paint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">        paint.setShader(shader);</div><div class="line"></div><div class="line">        RectF rect = <span class="keyword">new</span> RectF(<span class="number">0</span>, <span class="number">0</span>, bitmap.getWidth(), bitmap.getHeight());</div><div class="line">        canvas.drawRoundRect(rect, radius, radius, paint);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bmp;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>效果如下：</p>
-<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfap6unj20f00qo41j.jpg" alt=""></p>
-<h3 id="3-_不规则图片裁剪">3. 不规则图片裁剪</h3>
-<p>对话框气泡，原理是一样的，看代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Part3Fragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> RADIUS_FACTOR = <span class="number">8.0</span>f;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRIANGLE_WIDTH = <span class="number">120</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRIANGLE_HEIGHT = <span class="number">100</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRIANGLE_OFFSET = <span class="number">300</span>;</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> View <span class="title">onCreateView</span>(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {</div><div class="line">        View view = inflater.inflate(R.layout.fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">        ImageView image = (ImageView)view.findViewById(R.id.image);</div><div class="line">        Bitmap bitmap = BitmapFactory.decodeResource(container.getResources(), R.drawable.betty);</div><div class="line">        image.setImageBitmap(processImage(bitmap));</div><div class="line">        bitmap.recycle();</div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> Bitmap <span class="title">processImage</span>(Bitmap bitmap) {</div><div class="line">        Bitmap bmp;</div><div class="line"></div><div class="line">        bmp = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">        BitmapShader shader = <span class="keyword">new</span> BitmapShader(bitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);</div><div class="line"></div><div class="line">        <span class="keyword">float</span> radius = Math.min(bitmap.getWidth(), bitmap.getHeight()) / RADIUS_FACTOR;</div><div class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">        Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">        paint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">        paint.setShader(shader);</div><div class="line"></div><div class="line">        RectF rect = <span class="keyword">new</span> RectF(TRIANGLE_WIDTH, <span class="number">0</span>, bitmap.getWidth(), bitmap.getHeight());</div><div class="line">        canvas.drawRoundRect(rect, radius, radius, paint);</div><div class="line"></div><div class="line">        Path triangle = <span class="keyword">new</span> Path();</div><div class="line">        triangle.moveTo(<span class="number">0</span>, TRIANGLE_OFFSET);</div><div class="line">        triangle.lineTo(TRIANGLE_WIDTH, TRIANGLE_OFFSET - (TRIANGLE_HEIGHT / <span class="number">2</span>));</div><div class="line">        triangle.lineTo(TRIANGLE_WIDTH, TRIANGLE_OFFSET + (TRIANGLE_HEIGHT / <span class="number">2</span>));</div><div class="line">        triangle.close();</div><div class="line">        canvas.drawPath(triangle, paint);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bmp;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>效果如下:</p>
-<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emylfbfdpqj20f00qo775.jpg" alt=""></p>
-<h3 id="4-_心形图片裁剪">4. 心形图片裁剪</h3>
-<p>先设置<code>BitmapShader</code>, <code>Canvas</code>, 和 <code>Paint</code> 对象:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Bitmap bmp;</div><div class="line"> </div><div class="line">bmp = Bitmap.createBitmap(bitmap.getWidth(), </div><div class="line">    bitmap.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">BitmapShader shader = <span class="keyword">new</span> BitmapShader(bitmap, </div><div class="line">    BitmapShader.TileMode.CLAMP, </div><div class="line">    BitmapShader.TileMode.CLAMP);</div><div class="line"> </div><div class="line">Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">paint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">paint.setShader(shader);</div></pre></td></tr></table></figure>
-
-<p>再初始化一些后面需要用到的东西：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> width = bitmap.getWidth();</div><div class="line"><span class="keyword">float</span> height = bitmap.getHeight();</div><div class="line"></div><div class="line">Path oval = <span class="keyword">new</span> Path();</div><div class="line">Matrix matrix = <span class="keyword">new</span> Matrix();</div><div class="line">Region region = <span class="keyword">new</span> Region();</div></pre></td></tr></table></figure>
-
-<p>把长方形变成椭圆：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RectF ovalRect = <span class="keyword">new</span> RectF(width / <span class="number">8</span>, <span class="number">0</span>, </div><div class="line">    width - (width / <span class="number">8</span>), height);</div><div class="line">    </div><div class="line">oval.addOval(ovalRect, Path.Direction.CW);</div></pre></td></tr></table></figure>
-
-<p>得到如下图形：</p>
-<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emylfcmsu8j20f00qoacb.jpg" alt=""></p>
-<p>旋转30度：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">matrix.postRotate(<span class="number">30</span>, width / <span class="number">2</span>, height / <span class="number">2</span>);</div><div class="line">oval.transform(matrix, oval);</div></pre></td></tr></table></figure>
-
-<p>得到如下图形：</p>
-<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfd8juhj20f00qodi3.jpg" alt=""></p>
-<p>再用<code>Region</code>裁剪:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">region.setPath(oval, <span class="keyword">new</span> Region((<span class="keyword">int</span>)width / <span class="number">2</span>, <span class="number">0</span>, </div><div class="line">    (<span class="keyword">int</span>)width, (<span class="keyword">int</span>)height));</div><div class="line">canvas.drawPath(region.getBoundaryPath(), paint);</div></pre></td></tr></table></figure>
-
-<p>得到如下图形：</p>
-<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfdwiolj20f00qoabj.jpg" alt=""></p>
-<p>同理再画另一边，画之前先复位:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">matrix.reset();</div><div class="line">oval.reset();</div></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">oval.addOval(ovalRect, Path.Direction.CW);</div><div class="line">matrix.postRotate(-<span class="number">30</span>, width / <span class="number">2</span>, height / <span class="number">2</span>);</div><div class="line">oval.transform(matrix, oval);</div><div class="line">region.setPath(oval, </div><div class="line">    <span class="keyword">new</span> Region(<span class="number">0</span>, <span class="number">0</span>, (<span class="keyword">int</span>)width / <span class="number">2</span>, (<span class="keyword">int</span>)height));</div><div class="line">canvas.drawPath(region.getBoundaryPath(), paint);</div></pre></td></tr></table></figure>
-
-<p>得到如下图形：</p>
-<p><img src="http://ww4.sinaimg.cn/mw690/72589a09gw1emylfbzr4nj20f00qotaz.jpg" alt=""></p>
-<p>全部代码放一起如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Part4Fragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{</div><div class="line"></div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> View <span class="title">onCreateView</span>(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {</div><div class="line">        View view = inflater.inflate(R.layout.fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">        ImageView image = (ImageView)view.findViewById(R.id.image);</div><div class="line">        Bitmap bitmap = BitmapFactory.decodeResource(container.getResources(), R.drawable.betty);</div><div class="line">        image.setImageBitmap(processImage(bitmap));</div><div class="line">        bitmap.recycle();</div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> Bitmap <span class="title">processImage</span>(Bitmap bitmap) {</div><div class="line">        Bitmap bmp;</div><div class="line"></div><div class="line">        bmp = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">        BitmapShader shader = <span class="keyword">new</span> BitmapShader(bitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);</div><div class="line"></div><div class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(bmp);</div><div class="line">        Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">        paint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">        paint.setShader(shader);</div><div class="line"></div><div class="line">        <span class="keyword">float</span> width = bitmap.getWidth();</div><div class="line">        <span class="keyword">float</span> height = bitmap.getHeight();</div><div class="line"></div><div class="line">        Path oval = <span class="keyword">new</span> Path();</div><div class="line">        Matrix matrix = <span class="keyword">new</span> Matrix();</div><div class="line">        Region region = <span class="keyword">new</span> Region();</div><div class="line">        RectF ovalRect = <span class="keyword">new</span> RectF(width / <span class="number">8</span>, <span class="number">0</span>, width - (width / <span class="number">8</span>), height);</div><div class="line"></div><div class="line">        oval.addOval(ovalRect, Path.Direction.CW);</div><div class="line">        matrix.postRotate(<span class="number">30</span>, width / <span class="number">2</span>, height / <span class="number">2</span>);</div><div class="line">        oval.transform(matrix, oval);</div><div class="line">        region.setPath(oval, <span class="keyword">new</span> Region((<span class="keyword">int</span>)width / <span class="number">2</span>, <span class="number">0</span>, (<span class="keyword">int</span>)width, (<span class="keyword">int</span>)height));</div><div class="line">        canvas.drawPath(region.getBoundaryPath(), paint);</div><div class="line"></div><div class="line">        matrix.reset();</div><div class="line">        oval.reset();</div><div class="line">        oval.addOval(ovalRect, Path.Direction.CW);</div><div class="line">        matrix.postRotate(-<span class="number">30</span>, width / <span class="number">2</span>, height / <span class="number">2</span>);</div><div class="line">        oval.transform(matrix, oval);</div><div class="line">        region.setPath(oval, <span class="keyword">new</span> Region(<span class="number">0</span>, <span class="number">0</span>, (<span class="keyword">int</span>)width / <span class="number">2</span>, (<span class="keyword">int</span>)height));</div><div class="line">        canvas.drawPath(region.getBoundaryPath(), paint);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bmp;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="5-_参考链接">5. 参考链接</h3>
-<p><a href="http://www.douban.com/note/143111853/" target="_blank" rel="external">http://www.douban.com/note/143111853/</a></p>
-<p><a href="http://blog.stylingandroid.com/category/canvas/" target="_blank" rel="external">http://blog.stylingandroid.com/category/canvas/</a></p>
-<p><a href="http://chiuki.github.io/android-shaders-filters/#/" target="_blank" rel="external">http://chiuki.github.io/android-shaders-filters/#/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-about" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/01/about/" class="article-date">
-  	<time datetime="2014-12-01T09:12:10.000Z" itemprop="datePublished">Dec 1 2014</time>
-</a>
-      
-      
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/01/about/">关于我</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>华中科技大学08级，Android程序员，目前在上海联接工作…</strong></p>
-<p><em>开发过的应用：</em></p>
-<hr>
-<p>MusicTube，播放YouTube视频，也可以下载</p>
-<ul>
-<li><a href="http://www.amazon.com/MusicTube-Trailers-Singles-YouTube-download/dp/B00LX15X5W/ref=sr_1_1?ie=UTF8&amp;qid=1417422789&amp;sr=8-1&amp;keywords=musictube" target="_blank" rel="external">MusicTube(亚马逊市场)</a></li>
-<li><a href="http://vdisk.weibo.com/s/dyk_6CfP2t-xF/1417425580" target="_blank" rel="external">MusicTube(我的微盘)</a></li>
-</ul>
-<hr>
-<p>TubePlayer，登陆YouTube账号，管理你的订阅等，观看下载视频。</p>
-<ul>
-<li><a href="http://vdisk.weibo.com/s/dyk_6CfP2t-xl/1417425447" target="_blank" rel="external">TubePlayer(我的微盘)</a></li>
-</ul>
-<hr>
-<p>CleanMaster，清理手机垃圾和内存。</p>
-<ul>
-<li><a href="https://play.google.com/store/apps/details?id=com.toprankapps.cleanmaster" target="_blank" rel="external">CleanMaster(谷歌市场)</a></li>
-<li><a href="http://vdisk.weibo.com/s/dyk_6CfP2t-0C/1417425675" target="_blank" rel="external">CleanMaster(我的微盘)</a></li>
-</ul>
-<hr>
-<p><em>联系我：</em></p>
-<p><a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#115;&#x61;&#x6d;&#112;&#x79;&#x74;&#x68;&#111;&#110;&#x65;&#x72;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#115;&#x61;&#x6d;&#112;&#x79;&#x74;&#x68;&#111;&#110;&#x65;&#x72;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a></p>
-<p><a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x35;&#56;&#x32;&#x39;&#x30;&#54;&#53;&#x38;&#56;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#109;">&#x35;&#56;&#x32;&#x39;&#x30;&#54;&#53;&#x38;&#56;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#109;</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 
       <footer id="footer">
   <div class="outer">

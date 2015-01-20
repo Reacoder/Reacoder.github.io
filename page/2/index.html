@@ -101,7 +101,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/Studio/" style="font-size: 10.00px;">Studio</a><a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/gradle/" style="font-size: 10.00px;">gradle</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/menu/" style="font-size: 10.00px;">menu</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/toolbar/" style="font-size: 10.00px;">toolbar</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
+						<a href="/tags/Studio/" style="font-size: 10.00px;">Studio</a><a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/drawer/" style="font-size: 10.00px;">drawer</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/gradle/" style="font-size: 10.00px;">gradle</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/menu/" style="font-size: 10.00px;">menu</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/toolbar/" style="font-size: 15.00px;">toolbar</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
 					</div>
 				</section>
 				
@@ -156,6 +156,84 @@
 	</div>
 </nav>
       
+  
+    <article id="post-android-touch-event" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/30/android-touch-event/" class="article-date">
+  	<time datetime="2014-11-30T10:10:39.000Z" itemprop="datePublished">Nov 30 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/touchEvent/">touchEvent</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/30/android-touch-event/">android touch事件传递机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-先看3张图吧">1.先看3张图吧</h3>
+<p><strong>child不消费touch事件</strong><br><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt81ohhksj20sk0i5mzb.jpg" alt=""></p>
+<hr>
+<p><strong>child消费touch事件</strong><br><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt81pb1ozj20si0jitaz.jpg" alt=""></p>
+<hr>
+<p><strong>ViewGroup截获touch事件</strong><br><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt81qnrgdj20sk0j6jtl.jpg" alt=""></p>
+<h3 id="2-Android是怎么处理touch事件的？">2.Android是怎么处理touch事件的？</h3>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rcubgqj20r10it0va.jpg" alt=""></p>
+<hr>
+<p><img src="http://ww2.sinaimg.cn/mw690/72589a09gw1emt8rdph4fj20ri0ijn13.jpg" alt=""></p>
+<hr>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt8rei94nj20r00i8dix.jpg" alt=""></p>
+<hr>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt8rfc4f6j20qh0idwi4.jpg" alt=""></p>
+<h3 id="3-自定义touch事件处理">3.自定义touch事件处理</h3>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rg6jc7j20ok0id77i.jpg" alt=""></p>
+<hr>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rgtuivj20qr0i677z.jpg" alt=""></p>
+<hr>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8rhib0nj20ri0hhdjq.jpg" alt=""></p>
+<h3 id="4-系统提供的touch事件监听处理函数">4.系统提供的touch事件监听处理函数</h3>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1emt8ri60j4j20s10hnn08.jpg" alt=""></p>
+<hr>
+<p><img src="http://ww1.sinaimg.cn/mw690/72589a09gw1emt8ritrusj20qj0i2ad7.jpg" alt=""></p>
+<h3 id="5-更多关于多点触控和事件委托">5.更多关于多点触控和事件委托</h3>
+<p>文档见 <a href="http://vdisk.weibo.com/s/dyk_6CfP2FIz_" target="_blank" rel="external">http://vdisk.weibo.com/s/dyk_6CfP2FIz_</a></p>
+<p>或者<br><a href="http://files.cnblogs.com/sunzn/PRE_andevcon_mastering-the-android-touch-system.pdf" target="_blank" rel="external">http://files.cnblogs.com/sunzn/PRE_andevcon_mastering-the-android-touch-system.pdf</a></p>
+<p>视频<br><a href="https://www.youtube.com/watch?v=EZAoJU-nUyI" target="_blank" rel="external">https://www.youtube.com/watch?v=EZAoJU-nUyI</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-android-custom-viewgroup" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -755,149 +833,6 @@
 <p><a href="https://github.com/android-cn/android-dev-com" target="_blank" rel="external">https://github.com/android-cn/android-dev-com</a></p>
 <p><a href="https://github.com/android-cn/android-dev-cn" target="_blank" rel="external">https://github.com/android-cn/android-dev-cn</a></p>
 <p><a href="https://github.com/futurice/android-best-practices" target="_blank" rel="external">https://github.com/futurice/android-best-practices</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-android-develop-note" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/11/25/android-develop-note/" class="article-date">
-  	<time datetime="2014-11-25T04:55:06.000Z" itemprop="datePublished">Nov 25 2014</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">note</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/25/android-develop-note/">android 开发全纪录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="">ActionBar</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/custom-ActionMode" target="_blank" rel="external">custom ActionMode</a></li>
-</ul>
-<p><a href="">Activity</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/drawerLayout-framework" target="_blank" rel="external">drawerLayout framework</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/view-page-indicator-framework" target="_blank" rel="external">view page indicator framework</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/blob/master/PRE_andevcon_mastering-the-android-touch-system.pdf" target="_blank" rel="external">mastering the android touch system</a></li>
-</ul>
-<p><a href="">Animation</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/listview-animation" target="_blank" rel="external">listview animation</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/activity-animation" target="_blank" rel="external">activity animation</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/listview-item-show-animation" target="_blank" rel="external">listview item show animation</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/listview-item-show-animation-better" target="_blank" rel="external">listview item show animation better</a></li>
-</ul>
-<p><a href="">APK</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/Get-apk-file-icon,-version,-name" target="_blank" rel="external">Get apk file icon, version, name</a></li>
-<li><a href="http://stackoverflow.com/questions/6813322/install-uninstall-apks-programmatically-packagemanager-vs-intents" target="_blank" rel="external">install / uninstall APKs programmatically (PackageManager vs Intents)</a></li>
-</ul>
-<p><a href="">App</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/app-can-move-to-SDCard-or-not" target="_blank" rel="external">app can move to SDCard or not</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/get-memory-usage-of-apps" target="_blank" rel="external">get memory usage of apps</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/get-user-installed-apps-and-apps&#39;-size" target="_blank" rel="external">get user installed apps and apps’ size</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/get-running-apps-and-their-memory" target="_blank" rel="external">get running apps and their memory</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/free-all-apps&#39;-cache" target="_blank" rel="external">free all apps’ cache</a></li>
-</ul>
-<p><a href="">DB</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/get-picture-of-music" target="_blank" rel="external">get picture of music</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/greenDao-generator-java-project" target="_blank" rel="external">greenDao generator java project</a></li>
-</ul>
-<p><a href="">Gradle</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/build.gradle-and-proguard" target="_blank" rel="external">build.gradle and proguard</a></li>
-</ul>
-<p><a href="">Hardware</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/AirplaneUtil" target="_blank" rel="external">AirplaneUtil</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/BluetoothUtil" target="_blank" rel="external">BluetoothUtil</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/FlashLightUtil" target="_blank" rel="external">FlashLightUtil</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/GPRSUtil" target="_blank" rel="external">GPRSUtil</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/GPSUtil" target="_blank" rel="external">GPSUtil</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/MuteModeUtil" target="_blank" rel="external">MuteModeUtil</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/RotateUtil" target="_blank" rel="external">RotateUtil</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/ScreenBrightUtil" target="_blank" rel="external">ScreenBrightUtil</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/ScreenOffUtil" target="_blank" rel="external">ScreenOffUtil</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/WifiUtil" target="_blank" rel="external">WifiUtil</a></li>
-</ul>
-<p><a href="">Intent</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/Android-%E5%B8%B8%E7%94%A8-mimeType-%E8%A1%A8" target="_blank" rel="external">Android 常用 mimeType 表</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/open-default-calculator" target="_blank" rel="external">open default calculator</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/get-alarm,calculator,gallery,camera,battery,share-intent" target="_blank" rel="external">get alarm,calculator,gallery,camera,battery,share intent</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/open-uninstall-setting-page" target="_blank" rel="external">open uninstall setting page</a></li>
-</ul>
-<p><a href="">ListView</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/cancel-listView-scroll" target="_blank" rel="external">cancel listView scroll</a></li>
-</ul>
-<p><a href="">Shortcut</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/make-launcher-shortcut-for-boost." target="_blank" rel="external">make launcher shortcut for boost.</a></li>
-</ul>
-<p><a href="">TextView</a></p>
-<ul>
-<li><a href="http://orgcent.com/android-textview-spannablestring-span/" target="_blank" rel="external">TextView使用SpannableString设置复合文本</a></li>
-<li><a href="http://blog.csdn.net/lixin84915/article/details/8110667" target="_blank" rel="external"> Android文本样式</a></li>
-</ul>
-<p><a href="">Util</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/string-util-include-date" target="_blank" rel="external">string util include date</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/SystemUtil-with-ram,temperature,storage,music,pictures" target="_blank" rel="external">SystemUtil with ram,temperature,storage,music,pictures</a></li>
-</ul>
-<p><a href="">View</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/CheckableTextView" target="_blank" rel="external">CheckableTextView</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/CheckBox-with-different-bg" target="_blank" rel="external">CheckBox with different bg</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/Dashboard" target="_blank" rel="external">Dashboard</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/RightUpperCornerText" target="_blank" rel="external">RightUpperCornerText</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/SearchView" target="_blank" rel="external">SearchView</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/custom-progress-bar" target="_blank" rel="external">custom progress bar</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/custom-video-controller" target="_blank" rel="external">custom video controller</a></li>
-<li><a href="https://github.com/Reacoder/AndroidDevelopNote/wiki/custom-progress-circle" target="_blank" rel="external">custom progress circle</a></li>
-</ul>
-<p><a href="">Window</a></p>
-<ul>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/open-popup-window" target="_blank" rel="external">open popup window</a></li>
-<li><a href="https://github.com/sampythoner/AndroidDevelopNote/wiki/add-global-player-window-which-can-move-in-Y" target="_blank" rel="external">add global player window which can move in Y</a></li>
-</ul>
 
       
     </div>
