@@ -101,7 +101,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/Studio/" style="font-size: 10.00px;">Studio</a><a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/drawer/" style="font-size: 10.00px;">drawer</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/gradle/" style="font-size: 10.00px;">gradle</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/menu/" style="font-size: 10.00px;">menu</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/toolbar/" style="font-size: 15.00px;">toolbar</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
+						<a href="/tags/Studio/" style="font-size: 10.00px;">Studio</a><a href="/tags/adb/" style="font-size: 10.00px;">adb</a><a href="/tags/animation/" style="font-size: 10.00px;">animation</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/cmd/" style="font-size: 10.00px;">cmd</a><a href="/tags/customView/" style="font-size: 20.00px;">customView</a><a href="/tags/db/" style="font-size: 10.00px;">db</a><a href="/tags/drawer/" style="font-size: 10.00px;">drawer</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/gradle/" style="font-size: 10.00px;">gradle</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/image/" style="font-size: 10.00px;">image</a><a href="/tags/listview/" style="font-size: 15.00px;">listview</a><a href="/tags/menu/" style="font-size: 10.00px;">menu</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/note/" style="font-size: 10.00px;">note</a><a href="/tags/spannableString/" style="font-size: 10.00px;">spannableString</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/textView/" style="font-size: 10.00px;">textView</a><a href="/tags/timeHelper/" style="font-size: 10.00px;">timeHelper</a><a href="/tags/toolBar/" style="font-size: 10.00px;">toolBar</a><a href="/tags/toolbar/" style="font-size: 15.00px;">toolbar</a><a href="/tags/touchEvent/" style="font-size: 15.00px;">touchEvent</a><a href="/tags/tutorial/" style="font-size: 10.00px;">tutorial</a><a href="/tags/video/" style="font-size: 10.00px;">video</a>
 					</div>
 				</section>
 				
@@ -156,6 +156,140 @@
 	</div>
 </nav>
       
+  
+    <article id="post-TinderLiker-develop-record" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/01/29/TinderLiker-develop-record/" class="article-date">
+  	<time datetime="2015-01-29T09:05:44.000Z" itemprop="datePublished">Jan 29 2015</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/db/">db</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/timeHelper/">timeHelper</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/toolBar/">toolBar</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/29/TinderLiker-develop-record/">TinderLiker 开发总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概览：">概览：</h3>
+<h3 id="1-_采用ORM数据库LitePal">1. 采用ORM数据库LitePal</h3>
+<h3 id="2-_ToolBar的使用">2. ToolBar的使用</h3>
+<h3 id="3-_最新兼容库的下拉刷新">3. 最新兼容库的下拉刷新</h3>
+<h3 id="4-_工具类">4. 工具类</h3>
+<hr>
+<h3 id="1-_采用ORM数据库LitePal-1">1. 采用ORM数据库LitePal</h3>
+<h4 id="(1)官方介绍">(1)官方介绍</h4>
+<blockquote>
+<p>LitePal is an Open Source Android library that allows developers to use SQLite database extremely easy. You can finish most of the database operations without writing even a SQL statement, including create or upgrade tables, crud operations, aggregate functions, etc. The setup of LitePal is quite simple as well, you can integrate it into your project in less than 5 minutes.</p>
+</blockquote>
+<p><a href="https://github.com/LitePalFramework/LitePal" target="_blank" rel="external">官方地址GitHub</a></p>
+<p><a href="http://blog.csdn.net/column/details/android-database-pro.html" target="_blank" rel="external">系列博客地址（中文的）</a></p>
+<h4 id="(2)欣赏一下增删改查（配置超级简单，见官网）">(2)欣赏一下增删改查（配置超级简单，见官网）</h4>
+<p>增</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Album album = <span class="keyword">new</span> Album();</div><div class="line">album.setName(<span class="string">"album"</span>);</div><div class="line">album.setPrice(<span class="number">10.99</span>f);</div><div class="line">album.save();</div></pre></td></tr></table></figure>
+
+<p>删</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DataSupport.delete(Song.class, id);</div><div class="line"></div><div class="line">DataSupport.deleteAll(Song.class, <span class="string">"duration &gt; ?"</span> , <span class="string">"350"</span>);</div></pre></td></tr></table></figure>
+
+<p>改</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Album albumToUpdate = <span class="keyword">new</span> Album();</div><div class="line">albumToUpdate.setPrice(<span class="number">20.99</span>f); <span class="comment">// raise the price</span></div><div class="line">albumToUpdate.update(id);</div><div class="line"></div><div class="line">Album albumToUpdate = <span class="keyword">new</span> Album();</div><div class="line">albumToUpdate.setPrice(<span class="number">20.99</span>f); <span class="comment">// raise the price</span></div><div class="line">albumToUpdate.updateAll(<span class="string">"name = ?"</span>, <span class="string">"album"</span>);</div></pre></td></tr></table></figure>
+
+<p>查</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Song song = DataSupport.find(Song.class, id);</div><div class="line"></div><div class="line">List&lt;Song&gt; allSongs = DataSupport.findAll(Song.class);</div><div class="line"></div><div class="line">List&lt;Song&gt; songs = DataSupport.where(<span class="string">"name like ?"</span>, <span class="string">"song%"</span>).order(<span class="string">"duration"</span>).find(Song.class);</div></pre></td></tr></table></figure>
+
+<h4 id="(3)踩过的坑">(3)踩过的坑</h4>
+<h5 id="a-_定义model时，加上id，方便以后更新数据">a. 定义model时，加上id，方便以后更新数据</h5>
+<p>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> <span class="keyword">extends</span> <span class="title">DataSupport</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> lat;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> lng;</div><div class="line">    <span class="keyword">private</span> Date date;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> checked;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> my_location;</div><div class="line">    <span class="keyword">private</span> String owner_id;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="title">Address</span>() {</div><div class="line">    }</div><div class="line">    ...</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>更新时就可以</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Tinder savedTinder = savedTinders.get(<span class="number">0</span>);</div><div class="line">savedTinder.setChanged_date(t.getChanged_date());</div><div class="line">savedTinder.setRelation(t.getRelation());</div><div class="line">savedTinder.update(savedTinder.getId());</div></pre></td></tr></table></figure>
+
+<h5 id="b-_更新到默认值的方法有点特别">b. 更新到默认值的方法有点特别</h5>
+<p>源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line"> * Updates the corresponding record by id. Use setXxx to decide which</div><div class="line"> * columns to update.</div><div class="line"> * </div><div class="line"> * &lt;pre&gt;</div><div class="line"> * Person person = new Person();</div><div class="line"> * person.setName(&quot;Jim&quot;);</div><div class="line"> * person.update(1);</div><div class="line"> * &lt;/pre&gt;</div><div class="line"> * </div><div class="line"> * This means that the name of record 1 will be updated into Jim.&lt;br&gt;</div><div class="line"> * </div><div class="line"> * &lt;b&gt;Note: &lt;/b&gt; 1. If you set a default value to a field, the corresponding</div><div class="line"> * column won't be updated. Use {@link #setToDefault(String)} to update</div><div class="line"> * columns into default value. 2. This method couldn't update foreign key in</div><div class="line"> * database. So do not use setXxx to set associations between models.</div><div class="line"> * </div><div class="line"> *<span class="javadoctag"> @param</span> id</div><div class="line"> *            Which record to update.</div><div class="line"> *<span class="javadoctag"> @return</span> The number of rows affected.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">int</span> <span class="title">update</span>(<span class="keyword">long</span> id) {</div><div class="line">	<span class="keyword">try</span> {</div><div class="line">		UpdateHandler updateHandler = <span class="keyword">new</span> UpdateHandler(Connector.getDatabase());</div><div class="line">		<span class="keyword">int</span> rowsAffected = updateHandler.onUpdate(<span class="keyword">this</span>, id);</div><div class="line">		getFieldsToSetToDefault().clear();</div><div class="line">		<span class="keyword">return</span> rowsAffected;</div><div class="line">	} <span class="keyword">catch</span> (Exception e) {</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> DataSupportException(e.getMessage());</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>所以更新到默认值的时候需要这么做：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">long</span> id = address.getId();</div><div class="line"><span class="keyword">if</span> (id &gt; <span class="number">0</span>) {</div><div class="line">    <span class="keyword">if</span> (!address.isChecked()) {</div><div class="line">        address.setToDefault(<span class="string">"checked"</span>);</div><div class="line">    }</div><div class="line">    address.update(id);</div><div class="line">} <span class="keyword">else</span> {</div><div class="line">    address.save();</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h5 id="c-_别忘了Proguard">c. 别忘了Proguard</h5>
+<p>-keep class org.litepal.<em>* { </em>; }</p>
+<h3 id="2-_ToolBar的使用-1">2. ToolBar的使用</h3>
+<p><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1eofv0fy9fzj20a50hwdgf.jpg" alt=""><br><img src="http://ww3.sinaimg.cn/mw690/72589a09gw1eofv0g52doj20a40hpt9b.jpg" alt=""></p>
+<h4 id="(1)依赖">(1)依赖</h4>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies {</div><div class="line">    compile fileTree(dir: 'libs', include: ['*.jar'])</div><div class="line">    compile 'com.android.support:appcompat-v7:21.0.2'</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h4 id="(2)Theme配制">(2)Theme配制</h4>
+<p>style.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">resources</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- Base application theme. --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">style</span> <span class="attribute">name</span>=<span class="value">"AppTheme"</span> <span class="attribute">parent</span>=<span class="value">"AppTheme.Base"</span>&gt;</span><span class="css"></span></div><div class="line">        &lt;!<span class="tag">--</span> <span class="tag">Customize</span> <span class="tag">your</span> <span class="tag">theme</span> <span class="tag">here</span>. <span class="tag">--</span>&gt;</div><div class="line">    <span class="tag">&lt;/<span class="title">style</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="title">style</span> <span class="attribute">name</span>=<span class="value">"AppTheme.Base"</span> <span class="attribute">parent</span>=<span class="value">"Theme.AppCompat"</span>&gt;</span><span class="css"></span></div><div class="line">        &lt;<span class="tag">item</span> <span class="tag">name</span>="<span class="tag">windowActionBar</span>"&gt;<span class="tag">false</span>&lt;/<span class="tag">item</span>&gt;</div><div class="line">        &lt;<span class="tag">item</span> <span class="tag">name</span>="<span class="tag">android</span><span class="pseudo">:windowNoTitle"</span>&gt;<span class="tag">true</span>&lt;/<span class="tag">item</span>&gt;</div><div class="line"></div><div class="line">        &lt;!<span class="tag">--</span> <span class="tag">Actionbar</span> <span class="tag">color</span> <span class="tag">--</span>&gt;</div><div class="line">        &lt;<span class="tag">item</span> <span class="tag">name</span>="<span class="tag">colorPrimary</span>"&gt;<span class="at_rule">@<span class="keyword">color/red&lt;/item&gt;</span></span></div><div class="line">        &lt;!--Status bar color--&gt;</div><div class="line">        &lt;item name=<span class="string">"colorPrimaryDark"</span>&gt;@color/red&lt;/item&gt;</div><div class="line">        &lt;!--Window color--&gt;</div><div class="line">        &lt;item name=<span class="string">"android:windowBackground"</span>&gt;@android:color/white&lt;/item&gt;</div><div class="line">    <span class="tag">&lt;/<span class="title">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>v21/style.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">style</span> <span class="attribute">name</span>=<span class="value">"AppTheme"</span> <span class="attribute">parent</span>=<span class="value">"AppTheme.Base"</span>&gt;</span><span class="css"></span></div><div class="line">        &lt;!<span class="tag">--Navigation</span> <span class="tag">bar</span> <span class="tag">color--</span>&gt;</div><div class="line">        &lt;<span class="tag">item</span> <span class="tag">name</span>="<span class="tag">android</span><span class="pseudo">:navigationBarColor"</span>&gt;<span class="at_rule">@<span class="keyword">color/red&lt;/item&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="title">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h4 id="(3)单独定义toolBar的布局文件toolbar-xml">(3)单独定义toolBar的布局文件<code>toolbar.xml</code></h4>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">android.support.v7.widget.Toolbar</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attribute">android:id</span>=<span class="value">"@+id/toolbar"</span></div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span></div><div class="line">    <span class="attribute">android:background</span>=<span class="value">"?attr/colorPrimary"</span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></div><div class="line">    <span class="attribute">android:minHeight</span>=<span class="value">"?attr/actionBarSize"</span>&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="title">android.support.v7.widget.Toolbar</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h4 id="(4)其他布局文件中引入toolBar">(4)其他布局文件中引入toolBar</h4>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">LinearLayout</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span></div><div class="line">    <span class="attribute">android:orientation</span>=<span class="value">"vertical"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="title">include</span></span></div><div class="line">        <span class="attribute">layout</span>=<span class="value">"@layout/toolbar"</span></div><div class="line">        <span class="attribute">android:id</span>=<span class="value">"@+id/toolbar"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="title">ScrollView</span></span></div><div class="line">        <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></div><div class="line">        <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>&gt;</div><div class="line">        </div><div class="line">        ...</div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="title">ScrollView</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h4 id="(5)让toolBar支持actionBar">(5)让toolBar支持actionBar</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initToolBar</span>() {</div><div class="line">    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);</div><div class="line">    setSupportActionBar(toolbar);</div><div class="line">    ActionBar actionBar = getSupportActionBar();</div><div class="line">    actionBar.setDisplayHomeAsUpEnabled(<span class="keyword">true</span>);</div><div class="line">    actionBar.setTitle(mTinder.getName());</div><div class="line">    toolbar.setNavigationOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</div><div class="line">        <span class="annotation">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View v) {</div><div class="line">            finish();</div><div class="line">        }</div><div class="line">    });</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="3-_最新兼容库的下拉刷新-1">3. 最新兼容库的下拉刷新</h3>
+<p><img src="http://ww2.sinaimg.cn/mw690/72589a09gw1eoqhnk4jwmj209x0hnwfb.jpg" alt=""></p>
+<h4 id="(1)依赖-1">(1)依赖</h4>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies {</div><div class="line">    compile fileTree(dir: 'libs', include: ['*.jar'])</div><div class="line">    compile 'com.android.support:appcompat-v7:21.0.2'</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h4 id="(2)布局和其他的下拉刷新一样">(2)布局和其他的下拉刷新一样</h4>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">RelativeLayout</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></div><div class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="title">android.support.v4.widget.SwipeRefreshLayout</span></span></div><div class="line">        <span class="attribute">android:id</span>=<span class="value">"@+id/frag_liker_refresh_layout"</span></div><div class="line">        <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></div><div class="line">        <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span></div><div class="line">        <span class="attribute">android:layout_above</span>=<span class="value">"@+id/frag_liker_bottom_layout"</span>&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="title">GridView</span></span></div><div class="line">            <span class="attribute">android:id</span>=<span class="value">"@+id/frag_liker_gridview"</span></div><div class="line">            <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></div><div class="line">            <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span></div><div class="line">            <span class="attribute">android:padding</span>=<span class="value">"8dp"</span></div><div class="line">            <span class="attribute">android:gravity</span>=<span class="value">"fill"</span></div><div class="line">            <span class="attribute">android:horizontalSpacing</span>=<span class="value">"8dp"</span></div><div class="line">            <span class="attribute">android:numColumns</span>=<span class="value">"3"</span></div><div class="line">            <span class="attribute">android:stretchMode</span>=<span class="value">"columnWidth"</span></div><div class="line">            <span class="attribute">android:verticalSpacing</span>=<span class="value">"8dp"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="title">android.support.v4.widget.SwipeRefreshLayout</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="title">TextView</span></span></div><div class="line">        <span class="attribute">android:id</span>=<span class="value">"@+id/empty_content"</span></div><div class="line">        <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span></div><div class="line">        <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span></div><div class="line">        <span class="attribute">android:textSize</span>=<span class="value">"18sp"</span></div><div class="line">        <span class="attribute">android:layout_marginTop</span>=<span class="value">"150dp"</span></div><div class="line">        <span class="attribute">android:layout_centerHorizontal</span>=<span class="value">"true"</span></div><div class="line">        <span class="attribute">android:textColor</span>=<span class="value">"#ababab"</span></div><div class="line">        <span class="attribute">android:visibility</span>=<span class="value">"gone"</span></div><div class="line">        <span class="attribute">android:gravity</span>=<span class="value">"center"</span></div><div class="line">        <span class="attribute">android:lineSpacingExtra</span>=<span class="value">"6dp"</span></div><div class="line">        <span class="attribute">android:drawableTop</span>=<span class="value">"@drawable/ic_mainlikepass_smile"</span></div><div class="line">        <span class="attribute">android:text</span>=<span class="value">"@string/frag_tinder_liker_empty"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="title">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p><strong>注意这里展示空列表的方式</strong></p>
+<h4 id="(3)刚进入页面显示刷新图标">(3)刚进入页面显示刷新图标</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义Runnable</span></div><div class="line"><span class="keyword">private</span> Runnable mProgressRunnable = <span class="keyword">new</span> Runnable() {</div><div class="line">    <span class="annotation">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {</div><div class="line">        mSwipeRefreshLayout.setRefreshing(<span class="keyword">true</span>);</div><div class="line">    }</div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">// 第一次显示刷新</span></div><div class="line">mHandler.postDelayed(mProgressRunnable, <span class="number">100</span>);</div><div class="line"></div><div class="line"><span class="comment">// 停止刷新</span></div><div class="line">mHandler.removeCallbacks(mProgressRunnable);</div><div class="line">mSwipeRefreshLayout.setRefreshing(<span class="keyword">false</span>);</div></pre></td></tr></table></figure>
+
+<p>如果只是在初始化是设置<code>mSwipeRefreshLayout.setRefreshing(true);</code>，刷新图标不会显示。</p>
+<h3 id="4-_工具类-1">4. 工具类</h3>
+<h4 id="(1)把形如1988-08-17T00:00:00-000Z的时间转换为毫秒数">(1)把形如<code>1988-08-17T00:00:00.000Z</code>的时间转换为毫秒数</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getAge</span>(String formattedBirthday) {</div><div class="line">    <span class="comment">// birth_date : 1988-08-17T00:00:00.000Z</span></div><div class="line">    String format = <span class="string">"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"</span>;</div><div class="line">    SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(format, Locale.US);</div><div class="line">    <span class="keyword">int</span> age = <span class="number">0</span>;</div><div class="line">    Calendar cal = Calendar.getInstance();</div><div class="line">    <span class="keyword">int</span> nowYear = cal.get(Calendar.YEAR);</div><div class="line">    <span class="keyword">try</span> {</div><div class="line">        Date date = sdf.parse(formattedBirthday);</div><div class="line">        cal.setTime(date);</div><div class="line">        <span class="keyword">int</span> birthYear = cal.get(Calendar.YEAR);</div><div class="line">        age = nowYear - birthYear;</div><div class="line">        <span class="keyword">if</span> (age &lt; <span class="number">0</span>) age = <span class="number">0</span>;</div><div class="line">    } <span class="keyword">catch</span> (ParseException e) {</div><div class="line">        e.printStackTrace();</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> age;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h4 id="(2)利用Android的工具方法得到相对时间,如一天前，一周前等">(2)利用Android的工具方法得到相对时间,如一天前，一周前等</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> CharSequence <span class="title">getActiveTime</span>(String formattedTime) {</div><div class="line">    String format = <span class="string">"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"</span>;</div><div class="line">    SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(format, Locale.US);</div><div class="line">    CharSequence activeTime = <span class="string">""</span>;</div><div class="line">    Calendar cal = Calendar.getInstance();</div><div class="line">    <span class="keyword">try</span> {</div><div class="line">        Date date = sdf.parse(formattedTime);</div><div class="line">        cal.setTime(date);</div><div class="line">        activeTime = DateUtils.getRelativeTimeSpanString(cal.getTimeInMillis());</div><div class="line">    } <span class="keyword">catch</span> (ParseException e) {</div><div class="line">        e.printStackTrace();</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> activeTime;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-toolbar-and-drawer" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -556,73 +690,6 @@
 <p><a href="http://www.douban.com/note/143111853/" target="_blank" rel="external">http://www.douban.com/note/143111853/</a></p>
 <p><a href="http://blog.stylingandroid.com/category/canvas/" target="_blank" rel="external">http://blog.stylingandroid.com/category/canvas/</a></p>
 <p><a href="http://chiuki.github.io/android-shaders-filters/#/" target="_blank" rel="external">http://chiuki.github.io/android-shaders-filters/#/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-about" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/01/about/" class="article-date">
-  	<time datetime="2014-12-01T09:12:10.000Z" itemprop="datePublished">Dec 1 2014</time>
-</a>
-      
-      
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/01/about/">关于我</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>华中科技大学08级，Android程序员，目前在上海联接工作…</strong></p>
-<p><em>开发过的应用：</em></p>
-<hr>
-<p>MusicTube，播放YouTube视频，也可以下载</p>
-<ul>
-<li><a href="http://www.amazon.com/MusicTube-Trailers-Singles-YouTube-download/dp/B00LX15X5W/ref=sr_1_1?ie=UTF8&amp;qid=1417422789&amp;sr=8-1&amp;keywords=musictube" target="_blank" rel="external">MusicTube(亚马逊市场)</a></li>
-<li><a href="http://vdisk.weibo.com/s/dyk_6CfP2t-xF/1417425580" target="_blank" rel="external">MusicTube(我的微盘)</a></li>
-</ul>
-<hr>
-<p>TubePlayer，登陆YouTube账号，管理你的订阅等，观看下载视频。</p>
-<ul>
-<li><a href="http://vdisk.weibo.com/s/dyk_6CfP2t-xl/1417425447" target="_blank" rel="external">TubePlayer(我的微盘)</a></li>
-</ul>
-<hr>
-<p>CleanMaster，清理手机垃圾和内存。</p>
-<ul>
-<li><a href="https://play.google.com/store/apps/details?id=com.toprankapps.cleanmaster" target="_blank" rel="external">CleanMaster(谷歌市场)</a></li>
-<li><a href="http://vdisk.weibo.com/s/dyk_6CfP2t-0C/1417425675" target="_blank" rel="external">CleanMaster(我的微盘)</a></li>
-</ul>
-<hr>
-<p><em>联系我：</em></p>
-<p><a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#115;&#x61;&#x6d;&#112;&#x79;&#x74;&#x68;&#111;&#110;&#x65;&#x72;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#115;&#x61;&#x6d;&#112;&#x79;&#x74;&#x68;&#111;&#110;&#x65;&#x72;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a></p>
-<p><a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x35;&#56;&#x32;&#x39;&#x30;&#54;&#53;&#x38;&#56;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#109;">&#x35;&#56;&#x32;&#x39;&#x30;&#54;&#53;&#x38;&#56;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#109;</a></p>
 
       
     </div>
